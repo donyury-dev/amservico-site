@@ -20,7 +20,7 @@ export function CasesSection({ title, headline, description, items }: CasesProps
     <section id="cases" className="py-20 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="text-[var(--color-primary,#1E88E5)] text-sm font-bold uppercase tracking-wider mb-3">{title}</div>
+          <div className="text-[var(--color-primary)] text-sm font-bold uppercase tracking-wider mb-3">{title}</div>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4"
               style={{ fontFamily: "var(--font-heading, inherit)" }}>
             {headline}
@@ -52,3 +52,4 @@ export function CasesSection({ title, headline, description, items }: CasesProps
     </section>
   );
 }
+

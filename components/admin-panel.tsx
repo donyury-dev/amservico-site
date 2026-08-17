@@ -141,7 +141,7 @@ export function AdminPanel() {
     <div className="min-h-screen bg-slate-50">
       <header className="bg-slate-900 text-white px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-[var(--color-primary,#1E88E5)] flex items-center justify-center font-bold">AM</div>
+          <div className="w-10 h-10 rounded-lg bg-[var(--color-primary)] flex items-center justify-center font-bold">AM</div>
           <div>
             <h1 className="font-bold">Painel de Edição do Site</h1>
             <p className="text-xs text-slate-400">AM Serviço e Manutenção</p>
@@ -274,9 +274,10 @@ function JsonEditor({ data, onChange }: { data: unknown; onChange: (v: unknown) 
       <textarea
         value={text}
         onChange={(e) => handleChange(e.target.value)}
-        className="w-full min-h-[500px] font-mono text-sm p-4 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary,#1E88E5)]"
+        className="w-full min-h-[500px] font-mono text-sm p-4 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
       />
       {error && <p className="text-sm text-red-500">{error}</p>}
     </div>
   );
 }
+

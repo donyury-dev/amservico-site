@@ -16,3 +16,4 @@ export function WhatsAppButton({ link, phone }: { link: string; phone: string })
     </a>
   );
 }
+

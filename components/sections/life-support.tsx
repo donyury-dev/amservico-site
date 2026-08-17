@@ -34,7 +34,7 @@ export function LifeSupportSection({
           </div>
 
           <div className="space-y-6 order-1 lg:order-2">
-            <div className="text-[var(--color-primary,#1E88E5)] text-sm font-bold uppercase tracking-wider">{title}</div>
+            <div className="text-[var(--color-primary)] text-sm font-bold uppercase tracking-wider">{title}</div>
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900"
                 style={{ fontFamily: "var(--font-heading, inherit)" }}>
               {headline}
@@ -56,3 +56,4 @@ export function LifeSupportSection({
     </section>
   );
 }
+

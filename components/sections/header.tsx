@@ -34,7 +34,7 @@ export function Header({ nav, whatsapp, whatsappLink }: HeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[var(--color-primary-dark,#0A2540)] flex items-center justify-center text-white font-bold text-lg">
+            <div className="w-10 h-10 rounded-lg bg-[var(--color-primary-dark)] flex items-center justify-center text-white font-bold text-lg">
               AM
             </div>
             <div className="leading-tight">
@@ -48,7 +48,7 @@ export function Header({ nav, whatsapp, whatsappLink }: HeaderProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-slate-700 hover:text-[var(--color-primary,#1E88E5)] transition-colors"
+                className="text-sm font-medium text-slate-700 hover:text-[var(--color-primary)] transition-colors"
               >
                 {item.label}
               </Link>
@@ -60,7 +60,7 @@ export function Header({ nav, whatsapp, whatsappLink }: HeaderProps) {
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--color-primary,#1E88E5)] text-white text-sm font-semibold hover:bg-[var(--color-primary-dark,#0A2540)] transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--color-primary)] text-white text-sm font-semibold hover:bg-[var(--color-primary-dark)] transition-colors"
             >
               <Phone className="w-4 h-4" />
               WhatsApp
@@ -94,7 +94,7 @@ export function Header({ nav, whatsapp, whatsappLink }: HeaderProps) {
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[var(--color-primary,#1E88E5)] text-white text-sm font-semibold"
+              className="mt-2 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[var(--color-primary)] text-white text-sm font-semibold"
             >
               <Phone className="w-4 h-4" />
               {whatsapp}
@@ -105,3 +105,4 @@ export function Header({ nav, whatsapp, whatsappLink }: HeaderProps) {
     </header>
   );
 }
+

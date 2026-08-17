@@ -36,7 +36,7 @@ export function Footer({
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-[var(--color-primary,#1E88E5)] flex items-center justify-center text-white font-bold">
+              <div className="w-10 h-10 rounded-lg bg-[var(--color-primary)] flex items-center justify-center text-white font-bold">
                 AM
               </div>
               <div className="leading-tight">
@@ -46,10 +46,10 @@ export function Footer({
             </div>
             <p className="text-sm text-slate-400 max-w-sm">{tagline}</p>
             <div className="space-y-2 text-sm">
-              <a href={whatsappLink} className="flex items-center gap-2 hover:text-[var(--color-primary,#1E88E5)]">
+              <a href={whatsappLink} className="flex items-center gap-2 hover:text-[var(--color-primary)]">
                 <Phone className="w-4 h-4" /> WhatsApp
               </a>
-              <a href={`mailto:${email}`} className="flex items-center gap-2 hover:text-[var(--color-primary,#1E88E5)]">
+              <a href={`mailto:${email}`} className="flex items-center gap-2 hover:text-[var(--color-primary)]">
                 <Mail className="w-4 h-4" /> {email}
               </a>
               <div className="flex items-center gap-2">
@@ -66,7 +66,7 @@ export function Footer({
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-slate-400 hover:text-[var(--color-primary,#1E88E5)] transition-colors"
+                      className="text-sm text-slate-400 hover:text-[var(--color-primary)] transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -87,3 +87,4 @@ export function Footer({
     </footer>
   );
 }
+

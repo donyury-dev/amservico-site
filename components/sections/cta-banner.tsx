@@ -21,7 +21,7 @@ export function CtaBanner({
   secondaryCtaHref,
 }: CtaBannerProps) {
   return (
-    <section className="py-16 bg-[var(--color-primary,#1E88E5)]">
+    <section className="py-16 bg-[var(--color-primary)]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4"
             style={{ fontFamily: "var(--font-heading, inherit)" }}>
@@ -31,7 +31,7 @@ export function CtaBanner({
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Link
             href={primaryCtaHref}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-white text-[var(--color-primary,#1E88E5)] font-semibold hover:bg-slate-100 transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-white text-[var(--color-primary)] font-semibold hover:bg-slate-100 transition-colors"
           >
             {primaryCta}
             <ArrowRight className="w-4 h-4" />
@@ -50,3 +50,4 @@ export function CtaBanner({
     </section>
   );
 }
+

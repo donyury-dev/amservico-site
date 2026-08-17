@@ -63,7 +63,7 @@ export function ContactSection({
     <section id="contato" className="py-20 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="text-[var(--color-primary,#1E88E5)] text-sm font-bold uppercase tracking-wider mb-3">{title}</div>
+          <div className="text-[var(--color-primary)] text-sm font-bold uppercase tracking-wider mb-3">{title}</div>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4"
               style={{ fontFamily: "var(--font-heading, inherit)" }}>
             {headline}
@@ -86,7 +86,7 @@ export function ContactSection({
                       rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="flex items-start gap-4 group"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-[var(--color-primary,#1E88E5)]/10 text-[var(--color-primary,#1E88E5)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--color-primary,#1E88E5)] group-hover:text-white transition-colors"
+                      <div className="w-10 h-10 rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors"
                       >
                         <Icon className="w-5 h-5" />
                       </div>
@@ -100,7 +100,7 @@ export function ContactSection({
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[var(--color-primary-dark,#0A2540)] text-white">
+            <div className="p-6 rounded-2xl bg-[var(--color-primary-dark)] text-white">
               <h3 className="text-xl font-bold mb-3">{commercial.title}</h3>
               <p className="text-slate-300 text-sm leading-relaxed">{commercial.text}</p>
             </div>
@@ -110,7 +110,7 @@ export function ContactSection({
             <h3 className="text-xl font-bold text-slate-900 mb-6">{formTitle}</h3>
             {sent ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
-                <CheckCircle className="w-12 h-12 text-[var(--color-secondary,#10B981)] mb-4" />
+                <CheckCircle className="w-12 h-12 text-[var(--color-secondary)] mb-4" />
                 <p className="text-slate-700 font-medium">{successMessage}</p>
               </div>
             ) : (
@@ -127,14 +127,14 @@ export function ContactSection({
                           name={field.name}
                           required={field.required}
                           rows={4}
-                          className="w-full px-4 py-2.5 rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary,#1E88E5)]"
+                          className="w-full px-4 py-2.5 rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
                         />
                       ) : (
                         <input
                           type={field.type}
                           name={field.name}
                           required={field.required}
-                          className="w-full px-4 py-2.5 rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary,#1E88E5)]"
+                          className="w-full px-4 py-2.5 rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
                         />
                       )}
                     </div>
@@ -142,7 +142,7 @@ export function ContactSection({
                 </div>
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-[var(--color-primary,#1E88E5)] text-white font-semibold hover:bg-[var(--color-primary-dark,#0A2540)] transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-[var(--color-primary)] text-white font-semibold hover:bg-[var(--color-primary-dark)] transition-colors"
                 >
                   <Send className="w-4 h-4" />
                   {submitLabel}
@@ -155,3 +155,4 @@ export function ContactSection({
     </section>
   );
 }
+

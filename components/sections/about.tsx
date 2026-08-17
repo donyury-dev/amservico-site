@@ -31,7 +31,7 @@ export function AboutSection({
     <section id="quem-somos" className="py-20 lg:py-28 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="text-[var(--color-primary,#1E88E5)] text-sm font-bold uppercase tracking-wider mb-3">{title}</div>
+          <div className="text-[var(--color-primary)] text-sm font-bold uppercase tracking-wider mb-3">{title}</div>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4"
               style={{ fontFamily: "var(--font-heading, inherit)" }}>
             {headline}
@@ -55,7 +55,7 @@ export function AboutSection({
               {bullets.map((b) => (
                 <li key={b} className="flex items-start gap-3 text-slate-700"
                 >
-                  <span className="mt-1.5 w-2 h-2 rounded-full bg-[var(--color-primary,#1E88E5)] flex-shrink-0" />
+                  <span className="mt-1.5 w-2 h-2 rounded-full bg-[var(--color-primary)] flex-shrink-0" />
                   {b}
                 </li>
               ))}
@@ -65,7 +65,7 @@ export function AboutSection({
               {highlights.map((h) => (
                 <div key={h.label} className="p-4 rounded-xl bg-white border border-slate-100 shadow-sm"
                 >
-                  <div className="text-2xl font-bold text-[var(--color-primary,#1E88E5)]">{h.value}</div>
+                  <div className="text-2xl font-bold text-[var(--color-primary)]">{h.value}</div>
                   <div className="text-xs text-slate-500">{h.label}</div>
                 </div>
               ))}
@@ -73,9 +73,9 @@ export function AboutSection({
 
             <div className="grid sm:grid-cols-3 gap-4 pt-4">
               {[mission, vision, values].map((item) => (
-                <div key={item.title} className="p-4 rounded-xl bg-[var(--color-primary-dark,#0A2540)] text-white"
+                <div key={item.title} className="p-4 rounded-xl bg-[var(--color-primary-dark)] text-white"
                 >
-                  <div className="text-sm font-bold text-[var(--color-secondary,#10B981)] mb-2">{item.title}</div>
+                  <div className="text-sm font-bold text-[var(--color-secondary)] mb-2">{item.title}</div>
                   <div className="text-sm text-slate-300 leading-relaxed">{item.text}</div>
                 </div>
               ))}
@@ -86,3 +86,4 @@ export function AboutSection({
     </section>
   );
 }
+

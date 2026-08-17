@@ -24,7 +24,7 @@ export function InfrastructureSection({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <div className="text-[var(--color-primary,#1E88E5)] text-sm font-bold uppercase tracking-wider">{title}</div>
+            <div className="text-[var(--color-primary)] text-sm font-bold uppercase tracking-wider">{title}</div>
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900"
                 style={{ fontFamily: "var(--font-heading, inherit)" }}>
               {headline}
@@ -40,7 +40,7 @@ export function InfrastructureSection({
                     {item.bullets.map((b) => (
                       <li key={b} className="flex items-start gap-2 text-sm text-slate-600"
                       >
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--color-secondary,#10B981)] flex-shrink-0" />
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--color-secondary)] flex-shrink-0" />
                         {b}
                       </li>
                     ))}
@@ -64,3 +64,4 @@ export function InfrastructureSection({
     </section>
   );
 }
+
