@@ -1,0 +1,81 @@
+const GITHUB_API = "https://api.github.com";
+
+export async function commitJsonToRepo({
+  owner,
+  repo,
+  token,
+  path: filePath,
+  content,
+  message,
+}: {
+  owner: string;
+  repo: string;
+  token: string;
+  path: string;
+  content: unknown;
+  message: string;
+}) {
+  const fullPath = `repos/${owner}/${repo}/contents/${filePath}`;
+
+  const getRes = await fetch(`${GITHUB_API}/${fullPath}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+  });
+
+  let sha: string | undefined;
+  if (getRes.ok) {
+    const data = await getRes.json();
+    sha = data.sha;
+  }
+
+  const body = {
+    message,
+    content: btoa(JSON.stringify(content, null, 2)),
+    ...(sha ? { sha } : {}),
+  };
+
+  const res = await fetch(`${GITHUB_API}/${fullPath}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`GitHub API error ${res.status}: ${err}`);
+  }
+
+  return res.json();
+}
+
+export async function getRepoSha({
+  owner,
+  repo,
+  token,
+  path: filePath,
+}: {
+  owner: string;
+  repo: string;
+  token: string;
+  path: string;
+}) {
+  const fullPath = `repos/${owner}/${repo}/contents/${filePath}`;
+  const res = await fetch(`${GITHUB_API}/${fullPath}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+  });
+  if (!res.ok) return undefined;
+  const data = await res.json();
+  return data.sha as string | undefined;
+}
