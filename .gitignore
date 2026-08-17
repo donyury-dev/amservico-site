@@ -43,5 +43,7 @@ next-env.d.ts
 # project
 build.log
 dist/
+.next-old/
+.vercel-old/
 
 .vercel
