@@ -4,45 +4,98 @@ export type SiteContent = {
 };
 
 export type ThemeConfig = {
-  default: {
-    name: string;
-    colors: Record<string, string>;
-    fonts: { heading: string; body: string };
-  };
-  themes: Array<{
-    id: string;
-    name: string;
-    startDate: string;
-    endDate: string;
-    colors: Record<string, string>;
-    fonts: { heading: string; body: string };
-  }>;
+  mode: "auto" | "manual";
+  manualTheme: string | null;
+  default: ThemeDefinition;
+  themes: ThemeDefinition[];
 };
 
-export function getActiveTheme(themes: ThemeConfig, date = new Date()): ThemeConfig["default"] {
-  const mmdd = `${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+export type ThemeDefinition = {
+  id?: string;
+  name: string;
+  icon?: string;
+  date?: string;
+  movable?: "easter" | "second-sunday-may";
+  autoRange?: { before: number; after: number };
+  colors: Record<string, string>;
+  fonts: { heading: string; body: string };
+};
 
-  const wrap = (d: string) => {
-    const [m, day] = d.split("-").map(Number);
-    return { m: m ?? 1, day: day ?? 1 };
-  };
+function parseDate(dateStr: string, year: number): Date {
+  const [month, day] = dateStr.split("-").map(Number);
+  return new Date(year, (month ?? 1) - 1, day ?? 1);
+}
 
-  const inRange = (start: string, end: string) => {
-    const s = wrap(start);
-    const e = wrap(end);
-    const now = wrap(mmdd);
+function getEasterDate(year: number): Date {
+  const a = year % 19;
+  const b = Math.floor(year / 100);
+  const c = year % 100;
+  const d = Math.floor(b / 4);
+  const e = b % 4;
+  const f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3);
+  const h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4);
+  const k = c % 4;
+  const l = (32 + 2 * e + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const month = Math.floor((h + l - 7 * m + 114) / 31) - 1;
+  const day = ((h + l - 7 * m + 114) % 31) + 1;
+  return new Date(year, month, day);
+}
 
-    const nowVal = now.m * 100 + now.day;
-    const startVal = s.m * 100 + s.day;
-    const endVal = e.m * 100 + e.day;
+function getSecondSundayMay(year: number): Date {
+  const may1 = new Date(year, 4, 1);
+  const firstSunday = 1 + ((7 - may1.getDay()) % 7);
+  return new Date(year, 4, firstSunday + 7);
+}
 
-    if (startVal <= endVal) {
-      return nowVal >= startVal && nowVal <= endVal;
+function getThemeBaseDate(theme: ThemeDefinition, year: number): Date | null {
+  if (theme.movable === "easter") return getEasterDate(year);
+  if (theme.movable === "second-sunday-may") return getSecondSundayMay(year);
+  if (theme.date) return parseDate(theme.date, year);
+  return null;
+}
+
+function isInRange(baseDate: Date, date: Date, before: number, after: number): boolean {
+  const start = new Date(baseDate);
+  start.setDate(start.getDate() - before);
+  start.setHours(0, 0, 0, 0);
+
+  const end = new Date(baseDate);
+  end.setDate(end.getDate() + after);
+  end.setHours(23, 59, 59, 999);
+
+  const check = new Date(date);
+  check.setHours(12, 0, 0, 0);
+
+  return check >= start && check <= end;
+}
+
+export function getActiveTheme(themes: ThemeConfig, date = new Date()): ThemeDefinition {
+  if (themes.mode === "manual" && themes.manualTheme) {
+    const manual = themes.themes.find((t) => t.id === themes.manualTheme);
+    if (manual) return manual;
+  }
+
+  const year = date.getFullYear();
+
+  for (const theme of themes.themes) {
+    const base = getThemeBaseDate(theme, year);
+    if (!base) continue;
+    const range = theme.autoRange || { before: 5, after: 3 };
+    if (isInRange(base, date, range.before, range.after)) {
+      return theme;
     }
-    return nowVal >= startVal || nowVal <= endVal;
-  };
+  }
 
-  const active = themes.themes.find((t) => inRange(t.startDate, t.endDate));
-  if (active) return active;
   return themes.default;
+}
+
+export function getCurrentThemeLabel(themes: ThemeConfig, date = new Date()): string {
+  const active = getActiveTheme(themes, date);
+  if (themes.mode === "manual" && themes.manualTheme) {
+    return `${active.name} (manual)`;
+  }
+  return active.name;
 }

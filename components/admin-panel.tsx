@@ -11,12 +11,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Separator } from "@/components/ui/separator";
 import { Download, Save, Upload, Lock, Eye, EyeOff, LogOut } from "lucide-react";
 import { commitJsonToRepo } from "@/lib/github";
-import { TextField, ImageField, ColorField, ListField } from "@/components/admin-fields";
+import { TextField, ImageField, ColorField, ListField, ThemeSelector } from "@/components/admin-fields";
+import { getCurrentThemeLabel, type ThemeConfig } from "@/lib/theme";
 
 export function AdminPanel() {
   const { isAuthenticated, logout, changePassword } = useAdminAuth();
   const [content, setContent] = useState<Record<string, any> | null>(null);
-  const [themes, setThemes] = useState<Record<string, any> | null>(null);
+  const [themes, setThemes] = useState<ThemeConfig | null>(null);
   const [token, setToken] = useState("");
   const [ownerRepo, setOwnerRepo] = useState("");
   const [status, setStatus] = useState("");
@@ -91,6 +92,23 @@ export function AdminPanel() {
         target = target[keys[i]];
       }
       return next;
+    });
+  };
+
+  const updateTheme = (key: "mode" | "manualTheme", value: any) => {
+    setThemes((prev) => (prev ? { ...prev, [key]: value } : prev));
+  };
+
+  const updateDefaultColor = (key: string, value: string) => {
+    setThemes((prev) => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        default: {
+          ...prev.default,
+          colors: { ...prev.default.colors, [key]: value },
+        },
+      };
     });
   };
 
@@ -209,6 +227,7 @@ export function AdminPanel() {
                     value={token}
                     onChange={(e) => setToken(e.target.value)}
                     placeholder="ghp_..."
+                    className="bg-white border-slate-300 text-slate-900 placeholder:text-slate-400"
                   />
                   <Button variant="outline" size="icon" onClick={() => setShowToken(!showToken)}>
                     {showToken ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -222,28 +241,36 @@ export function AdminPanel() {
                   value={ownerRepo}
                   onChange={(e) => setOwnerRepo(e.target.value)}
                   placeholder="ex: usuario/amservico-site"
+                  className="bg-white border-slate-300 text-slate-900 placeholder:text-slate-400"
                 />
               </div>
             </div>
             <Button onClick={saveToken} variant="secondary">
               <Save className="w-4 h-4 mr-1" /> Salvar Token no Site
             </Button>
-            <p className="text-xs text-slate-600">
-              Para criar um token, vá em GitHub, Settings, Developer settings, Personal access tokens, Tokens (classic), Generate new token, e marque a permissão repo.
-            </p>
+            <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 text-sm text-slate-700 space-y-2">
+              <p className="font-medium">Como criar o token do GitHub:</p>
+              <ol className="list-decimal list-inside space-y-1">
+                <li>Acesse <a href="https://github.com/settings/tokens" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">github.com/settings/tokens</a>.</li>
+                <li>Clique em <strong>Generate new token (classic)</strong>.</li>
+                <li>Dê um nome, escolha a validade (recomendamos 1 ano) e marque apenas a permissão <strong>repo</strong>.</li>
+                <li>Clique em <strong>Generate token</strong> e copie o código que começa com <code>ghp_</code>.</li>
+                <li>Cole o token acima e informe o repositório no formato <code>dono/repo</code> (ex: <code>seuusuario/amservico-site</code>).</li>
+              </ol>
+            </div>
             <Separator />
             <div className="grid sm:grid-cols-3 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="current">Senha atual</Label>
-                <Input id="current" type="password" value={currentPwd} onChange={(e) => setCurrentPwd(e.target.value)} />
+                <Input id="current" type="password" value={currentPwd} onChange={(e) => setCurrentPwd(e.target.value)} className="bg-white border-slate-300 text-slate-900 placeholder:text-slate-400" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="new">Nova senha</Label>
-                <Input id="new" type="password" value={newPwd} onChange={(e) => setNewPwd(e.target.value)} />
+                <Input id="new" type="password" value={newPwd} onChange={(e) => setNewPwd(e.target.value)} className="bg-white border-slate-300 text-slate-900 placeholder:text-slate-400" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="confirm">Confirmar nova senha</Label>
-                <Input id="confirm" type="password" value={confirmPwd} onChange={(e) => setConfirmPwd(e.target.value)} />
+                <Input id="confirm" type="password" value={confirmPwd} onChange={(e) => setConfirmPwd(e.target.value)} className="bg-white border-slate-300 text-slate-900 placeholder:text-slate-400" />
               </div>
             </div>
             <Button variant="outline" onClick={handleChangePassword}>
@@ -346,13 +373,32 @@ export function AdminPanel() {
             <TabsContent value="temas">
               <Card>
                 <CardHeader>
-                  <CardTitle>Tema Padrão</CardTitle>
+                  <CardTitle>Modo de Tema</CardTitle>
+                  <CardDescription>
+                    Escolha se o site muda sozinho conforme as datas comemorativas ou se fica fixo em um tema.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ThemeSelector
+                    mode={themes.mode}
+                    manualTheme={themes.manualTheme}
+                    options={[{ id: "default", name: themes.default?.name || "Padrão", icon: themes.default?.icon }, ...(themes.themes || [])]}
+                    currentLabel={getCurrentThemeLabel(themes)}
+                    onModeChange={(mode) => updateTheme("mode", mode)}
+                    onThemeChange={(id) => updateTheme("manualTheme", id === "default" ? null : id)}
+                  />
+                </CardContent>
+              </Card>
+
+              <Card className="mt-6">
+                <CardHeader>
+                  <CardTitle>Cores do Tema Padrão</CardTitle>
                 </CardHeader>
                 <CardContent className="grid sm:grid-cols-2 gap-4">
-                  <ColorField label="Cor primária" value={themes.default?.colors?.primary} onChange={(v) => setThemes({ ...themes, default: { ...themes.default, colors: { ...themes.default.colors, primary: v } } })} />
-                  <ColorField label="Cor primária escura" value={themes.default?.colors?.primaryDark} onChange={(v) => setThemes({ ...themes, default: { ...themes.default, colors: { ...themes.default.colors, primaryDark: v } } })} />
-                  <ColorField label="Cor secundária" value={themes.default?.colors?.secondary} onChange={(v) => setThemes({ ...themes, default: { ...themes.default, colors: { ...themes.default.colors, secondary: v } } })} />
-                  <ColorField label="Cor de destaque" value={themes.default?.colors?.accent} onChange={(v) => setThemes({ ...themes, default: { ...themes.default, colors: { ...themes.default.colors, accent: v } } })} />
+                  <ColorField label="Cor primária" value={themes.default?.colors?.primary} onChange={(v) => updateDefaultColor("primary", v)} />
+                  <ColorField label="Cor primária escura" value={themes.default?.colors?.primaryDark} onChange={(v) => updateDefaultColor("primaryDark", v)} />
+                  <ColorField label="Cor secundária" value={themes.default?.colors?.secondary} onChange={(v) => updateDefaultColor("secondary", v)} />
+                  <ColorField label="Cor de destaque" value={themes.default?.colors?.accent} onChange={(v) => updateDefaultColor("accent", v)} />
                 </CardContent>
               </Card>
 
@@ -360,36 +406,35 @@ export function AdminPanel() {
                 <Card key={idx} className="mt-4">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-base">Tema Comemorativo: {t.name}</CardTitle>
+                    <CardDescription>
+                      {t.movable
+                        ? `Data móvel: ${t.movable} — ativa ${t.autoRange?.before || 5} dias antes e fica mais ${t.autoRange?.after || 3} dias depois.`
+                        : `Data fixa: ${t.date} — ativa ${t.autoRange?.before || 5} dias antes e fica mais ${t.autoRange?.after || 3} dias depois.`}
+                    </CardDescription>
                   </CardHeader>
                   <CardContent className="grid sm:grid-cols-2 gap-4">
-                    <TextField label="Nome" value={t.name} onChange={(v) => {
-                      const next = { ...themes };
-                      next.themes[idx].name = v;
-                      setThemes(next);
-                    }} />
-                    <TextField label="Data início (MM-DD)" value={t.startDate} onChange={(v) => {
-                      const next = { ...themes };
-                      next.themes[idx].startDate = v;
-                      setThemes(next);
-                    }} />
-                    <TextField label="Data fim (MM-DD)" value={t.endDate} onChange={(v) => {
-                      const next = { ...themes };
-                      next.themes[idx].endDate = v;
-                      setThemes(next);
-                    }} />
                     <ColorField label="Cor primária" value={t.colors?.primary} onChange={(v) => {
                       const next = { ...themes };
-                      next.themes[idx].colors = { ...next.themes[idx].colors, primary: v };
+                      next.themes = [...next.themes];
+                      next.themes[idx] = { ...next.themes[idx], colors: { ...next.themes[idx].colors, primary: v } };
+                      setThemes(next);
+                    }} />
+                    <ColorField label="Cor primária escura" value={t.colors?.primaryDark} onChange={(v) => {
+                      const next = { ...themes };
+                      next.themes = [...next.themes];
+                      next.themes[idx] = { ...next.themes[idx], colors: { ...next.themes[idx].colors, primaryDark: v } };
                       setThemes(next);
                     }} />
                     <ColorField label="Cor secundária" value={t.colors?.secondary} onChange={(v) => {
                       const next = { ...themes };
-                      next.themes[idx].colors = { ...next.themes[idx].colors, secondary: v };
+                      next.themes = [...next.themes];
+                      next.themes[idx] = { ...next.themes[idx], colors: { ...next.themes[idx].colors, secondary: v } };
                       setThemes(next);
                     }} />
                     <ColorField label="Cor de destaque" value={t.colors?.accent} onChange={(v) => {
                       const next = { ...themes };
-                      next.themes[idx].colors = { ...next.themes[idx].colors, accent: v };
+                      next.themes = [...next.themes];
+                      next.themes[idx] = { ...next.themes[idx], colors: { ...next.themes[idx].colors, accent: v } };
                       setThemes(next);
                     }} />
                   </CardContent>
@@ -410,9 +455,9 @@ function JsonEditorPanel({
   setThemes,
 }: {
   content: Record<string, any>;
-  themes: Record<string, any>;
+  themes: ThemeConfig;
   setContent: (v: Record<string, any>) => void;
-  setThemes: (v: Record<string, any>) => void;
+  setThemes: (v: ThemeConfig) => void;
 }) {
   const [contentText, setContentText] = useState(JSON.stringify(content, null, 2));
   const [themesText, setThemesText] = useState(JSON.stringify(themes, null, 2));

@@ -1,6 +1,82 @@
 "use client";
 
-import { useState } from "react";
+import { Calendar, TreePine, Heart, Rabbit, Ghost, Cake, HardHat, HeartPulse, Sparkles } from "lucide-react";
+
+const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  Calendar,
+  TreePine,
+  Heart,
+  Rabbit,
+  Ghost,
+  Cake,
+  HardHat,
+  HeartPulse,
+  Sparkles,
+};
+
+export function ThemeSelector({
+  mode,
+  manualTheme,
+  options,
+  currentLabel,
+  onModeChange,
+  onThemeChange,
+}: {
+  mode: "auto" | "manual";
+  manualTheme: string | null;
+  options: Array<{ id?: string; name: string; icon?: string }>;
+  currentLabel: string;
+  onModeChange: (mode: "auto" | "manual") => void;
+  onThemeChange: (themeId: string | null) => void;
+}) {
+  return (
+    <div className="space-y-4">
+      <p className="text-sm text-slate-600">
+        No modo Automático, o site muda sozinho 5 dias antes das datas comemorativas e volta ao padrão 3 dias depois.
+        <strong> Atualmente: {currentLabel}.</strong>
+      </p>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <button
+          type="button"
+          onClick={() => {
+            onModeChange("auto");
+            onThemeChange(null);
+          }}
+          className={`flex items-center gap-2 p-3 rounded-xl border text-left transition-all ${
+            mode === "auto"
+              ? "border-red-500 bg-red-50 text-red-700 ring-1 ring-red-500"
+              : "border-slate-200 bg-white hover:border-slate-300"
+          }`}
+        >
+          <Calendar className="w-5 h-5" />
+          <span className="font-medium">Automático</span>
+        </button>
+        {options.map((opt, idx) => {
+          const Icon = ICONS[opt.icon || "Calendar"] || Calendar;
+          const selected = mode === "manual" && manualTheme === opt.id;
+          return (
+            <button
+              key={opt.id || idx}
+              type="button"
+              onClick={() => {
+                onModeChange("manual");
+                onThemeChange(opt.id || null);
+              }}
+              className={`flex items-center gap-2 p-3 rounded-xl border text-left transition-all ${
+                selected
+                  ? "border-red-500 bg-red-50 text-red-700 ring-1 ring-red-500"
+                  : "border-slate-200 bg-white hover:border-slate-300"
+              }`}
+            >
+              <Icon className="w-5 h-5" />
+              <span className="font-medium">{opt.name}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 interface TextFieldProps {
   label: string;
