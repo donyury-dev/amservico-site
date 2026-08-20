@@ -12,10 +12,14 @@ export function AdminLogin() {
   const { login } = useAdminAuth();
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!login(password)) {
+    setLoading(true);
+    const ok = await login(password);
+    setLoading(false);
+    if (!ok) {
       setError(true);
     }
   };
@@ -43,13 +47,14 @@ export function AdminLogin() {
                   setError(false);
                 }}
                 placeholder="Senha"
+                className="bg-white border-slate-300 text-slate-900 placeholder:text-slate-400"
               />
             </div>
             {error && (
               <p className="text-sm text-red-500">Senha incorreta. Tente novamente.</p>
             )}
-            <Button type="submit" className="w-full">
-              Acessar Painel
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Carregando..." : "Acessar Painel"}
             </Button>
           </form>
         </CardContent>

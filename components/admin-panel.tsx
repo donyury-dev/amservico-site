@@ -9,66 +9,41 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Download, Save, Upload, Lock, Eye, EyeOff } from "lucide-react";
+import { Download, Save, Upload, Lock, Eye, EyeOff, LogOut } from "lucide-react";
 import { commitJsonToRepo } from "@/lib/github";
-
-const TAB_KEYS = [
-  "company",
-  "hero",
-  "services",
-  "about",
-  "clinicalEngineering",
-  "lifeSupport",
-  "diagnosticImaging",
-  "infrastructure",
-  "electricalPanels",
-  "maintenanceServices",
-  "cases",
-  "differentials",
-  "contact",
-  "footer",
-  "ctaBanner",
-  "themes",
-];
-
-const TAB_LABELS: Record<string, string> = {
-  company: "Empresa",
-  hero: "Hero",
-  services: "Serviços",
-  about: "Quem Somos",
-  clinicalEngineering: "Eng. Clínica",
-  lifeSupport: "Suporte à Vida",
-  diagnosticImaging: "Diagnóstico",
-  infrastructure: "Adequação",
-  electricalPanels: "Quadros",
-  maintenanceServices: "Manutenções",
-  cases: "Cases",
-  differentials: "Diferenciais",
-  contact: "Contato",
-  footer: "Rodapé",
-  ctaBanner: "Banner CTA",
-  themes: "Temas",
-};
+import { TextField, ImageField, ColorField, ListField } from "@/components/admin-fields";
 
 export function AdminPanel() {
-  const { isAuthenticated } = useAdminAuth();
-  const [content, setContent] = useState<Record<string, unknown> | null>(null);
-  const [themes, setThemes] = useState<Record<string, unknown> | null>(null);
+  const { isAuthenticated, logout, changePassword } = useAdminAuth();
+  const [content, setContent] = useState<Record<string, any> | null>(null);
+  const [themes, setThemes] = useState<Record<string, any> | null>(null);
   const [token, setToken] = useState("");
   const [ownerRepo, setOwnerRepo] = useState("");
   const [status, setStatus] = useState("");
   const [showToken, setShowToken] = useState(false);
+  const [advanced, setAdvanced] = useState(false);
+
+  // Password change
+  const [currentPwd, setCurrentPwd] = useState("");
+  const [newPwd, setNewPwd] = useState("");
+  const [confirmPwd, setConfirmPwd] = useState("");
 
   useEffect(() => {
     fetch("/data/site-content.json")
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
       .then(setContent)
-      .catch(() => setStatus("Erro ao carregar site-content.json"));
+      .catch((err) => setStatus(`Erro ao carregar site-content.json: ${err.message}`));
 
     fetch("/data/themes.json")
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
       .then(setThemes)
-      .catch(() => setStatus("Erro ao carregar themes.json"));
+      .catch((err) => setStatus(`Erro ao carregar themes.json: ${err.message}`));
 
     const savedToken = localStorage.getItem("am_github_token");
     const savedRepo = localStorage.getItem("am_github_repo");
@@ -77,12 +52,72 @@ export function AdminPanel() {
   }, []);
 
   if (!isAuthenticated) return <AdminLogin />;
-  if (!content || !themes) return <div className="p-8">Carregando...</div>;
+  if (!content || !themes) return <div className="p-8">Carregando dados...</div>;
+
+  const update = (path: string, value: any) => {
+    setContent((prev) => {
+      if (!prev) return prev;
+      const next = { ...prev };
+      const keys = path.split(".");
+      let target: any = next;
+      for (let i = 0; i < keys.length - 1; i++) {
+        if (Array.isArray(target[keys[i]])) {
+          target[keys[i]] = [...target[keys[i]]];
+        } else {
+          target[keys[i]] = { ...target[keys[i]] };
+        }
+        target = target[keys[i]];
+      }
+      target[keys[keys.length - 1]] = value;
+      return next;
+    });
+  };
+
+  const updateArrayItem = (path: string, index: number, key: string, value: any) => {
+    setContent((prev) => {
+      if (!prev) return prev;
+      const next = { ...prev };
+      const keys = path.split(".");
+      let target: any = next;
+      for (let i = 0; i < keys.length; i++) {
+        if (Array.isArray(target[keys[i]])) {
+          target[keys[i]] = [...target[keys[i]]];
+          if (i === keys.length - 1) {
+            target[keys[i]][index] = { ...target[keys[i]][index], [key]: value };
+          }
+        } else {
+          target[keys[i]] = { ...target[keys[i]] };
+        }
+        target = target[keys[i]];
+      }
+      return next;
+    });
+  };
 
   const saveToken = () => {
     localStorage.setItem("am_github_token", token);
     localStorage.setItem("am_github_repo", ownerRepo);
     setStatus("Token e repositório salvos no navegador.");
+  };
+
+  const handleChangePassword = async () => {
+    if (!currentPwd || !newPwd || !confirmPwd) {
+      setStatus("Preencha todos os campos da senha.");
+      return;
+    }
+    if (newPwd !== confirmPwd) {
+      setStatus("Nova senha e confirmação não conferem.");
+      return;
+    }
+    const ok = await changePassword(currentPwd, newPwd);
+    if (ok) {
+      setStatus("Senha alterada com sucesso.");
+      setCurrentPwd("");
+      setNewPwd("");
+      setConfirmPwd("");
+    } else {
+      setStatus("Senha atual incorreta.");
+    }
   };
 
   const downloadJson = (data: unknown, filename: string) => {
@@ -129,33 +164,28 @@ export function AdminPanel() {
     }
   };
 
-  const updateContent = (key: string, value: unknown) => {
-    setContent((prev) => (prev ? { ...prev, [key]: value } : prev));
-  };
-
-  const renderEditor = (key: string, data: unknown, onChange: (v: unknown) => void) => {
-    return <JsonEditor key={key} data={data} onChange={onChange} />;
-  };
-
   return (
     <div className="min-h-screen bg-slate-50">
       <header className="bg-slate-900 text-white px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-[var(--color-primary)] flex items-center justify-center font-bold">AM</div>
+          <div className="w-10 h-10 rounded-lg bg-[var(--color-primary,#1E88E5)] flex items-center justify-center font-bold">AM</div>
           <div>
             <h1 className="font-bold">Painel de Edição do Site</h1>
             <p className="text-xs text-slate-400">AM Serviço e Manutenção</p>
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
+          <Button variant="outline" size="sm" onClick={() => setAdvanced(!advanced)}>
+            {advanced ? "Modo Simples" : "Modo Avançado (JSON)"}
+          </Button>
           <Button variant="outline" size="sm" onClick={() => downloadJson(content, "site-content.json")}>
             <Download className="w-4 h-4 mr-1" /> Baixar JSON
           </Button>
-          <Button variant="outline" size="sm" onClick={() => downloadJson(themes, "themes.json")}>
-            <Download className="w-4 h-4 mr-1" /> Baixar Temas
-          </Button>
           <Button size="sm" onClick={publish}>
             <Upload className="w-4 h-4 mr-1" /> Publicar no Site
+          </Button>
+          <Button variant="outline" size="sm" onClick={logout}>
+            <LogOut className="w-4 h-4 mr-1" /> Sair
           </Button>
         </div>
       </header>
@@ -163,10 +193,9 @@ export function AdminPanel() {
       <div className="max-w-7xl mx-auto px-4 py-6">
         <Card className="mb-6 border-yellow-200 bg-yellow-50">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Como funciona</CardTitle>
+            <CardTitle className="text-base">Configuração do GitHub</CardTitle>
             <CardDescription>
-              Faça as alterações abaixo e clique em "Publicar no Site" para atualizar automaticamente.
-              Você precisa configurar um token do GitHub abaixo (apenas uma vez).
+              Preencha uma vez para habilitar o botão "Publicar no Site".
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -206,18 +235,18 @@ export function AdminPanel() {
             <div className="grid sm:grid-cols-3 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="current">Senha atual</Label>
-                <Input id="current" type="password" />
+                <Input id="current" type="password" value={currentPwd} onChange={(e) => setCurrentPwd(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="new">Nova senha</Label>
-                <Input id="new" type="password" />
+                <Input id="new" type="password" value={newPwd} onChange={(e) => setNewPwd(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="confirm">Confirmar nova senha</Label>
-                <Input id="confirm" type="password" />
+                <Input id="confirm" type="password" value={confirmPwd} onChange={(e) => setConfirmPwd(e.target.value)} />
               </div>
             </div>
-            <Button variant="outline" onClick={() => setStatus("Alteração de senha ainda não implementada nesta versão.")}>
+            <Button variant="outline" onClick={handleChangePassword}>
               <Lock className="w-4 h-4 mr-1" /> Alterar senha
             </Button>
           </CardContent>
@@ -227,57 +256,196 @@ export function AdminPanel() {
           <div className="mb-4 p-3 rounded-lg bg-slate-100 text-sm text-slate-700">{status}</div>
         )}
 
-        <Tabs defaultValue="hero">
-          <TabsList className="flex-wrap h-auto gap-2 mb-6">
-            {TAB_KEYS.map((key) => (
-              <TabsTrigger key={key} value={key}>{TAB_LABELS[key]}</TabsTrigger>
-            ))}
-          </TabsList>
+        {advanced ? (
+          <JsonEditorPanel content={content} themes={themes} setContent={setContent} setThemes={setThemes} />
+        ) : (
+          <Tabs defaultValue="empresa">
+            <TabsList className="flex-wrap h-auto gap-2 mb-6">
+              {["empresa", "hero", "servicos", "quem-somos", "contato", "temas"].map((t) => (
+                <TabsTrigger key={t} value={t}>{t.charAt(0).toUpperCase() + t.slice(1)}</TabsTrigger>
+              ))}
+            </TabsList>
 
-          {TAB_KEYS.map((key) => (
-            <TabsContent key={key} value={key}>
+            <TabsContent value="empresa">
               <Card>
                 <CardHeader>
-                  <CardTitle>{TAB_LABELS[key]}</CardTitle>
+                  <CardTitle>Dados da Empresa</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  {key === "themes"
-                    ? renderEditor(key, themes, (v) => setThemes(v as Record<string, unknown>))
-                    : renderEditor(key, content[key], (v) => updateContent(key, v))}
+                <CardContent className="grid sm:grid-cols-2 gap-4">
+                  <TextField label="Nome fantasia" value={content.company?.name} onChange={(v) => update("company.name", v)} />
+                  <TextField label="Razão social" value={content.company?.fullName} onChange={(v) => update("company.fullName", v)} />
+                  <TextField label="CNPJ" value={content.company?.cnpj} onChange={(v) => update("company.cnpj", v)} />
+                  <TextField label="E-mail" value={content.company?.email} onChange={(v) => update("company.email", v)} />
+                  <TextField label="WhatsApp" value={content.company?.whatsapp} onChange={(v) => update("company.whatsapp", v)} />
+                  <TextField label="Cidade/UF" value={content.company?.address?.full} onChange={(v) => update("company.address.full", v)} />
+                  <TextField label="CREA" value={content.company?.crea} onChange={(v) => update("company.crea", v)} />
+                  <TextField label="Responsável técnico" value={content.company?.technicalResponsible} onChange={(v) => update("company.technicalResponsible", v)} />
                 </CardContent>
               </Card>
             </TabsContent>
-          ))}
-        </Tabs>
+
+            <TabsContent value="hero">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Banner Principal (Hero)</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <TextField label="Badge" value={content.hero?.badge} onChange={(v) => update("hero.badge", v)} />
+                  <TextField label="Título" value={content.hero?.title} onChange={(v) => update("hero.title", v)} rows={2} />
+                  <TextField label="Subtítulo" value={content.hero?.subtitle} onChange={(v) => update("hero.subtitle", v)} rows={3} />
+                  <TextField label="Texto botão principal" value={content.hero?.primaryCta} onChange={(v) => update("hero.primaryCta", v)} />
+                  <TextField label="Texto botão secundário" value={content.hero?.secondaryCta} onChange={(v) => update("hero.secondaryCta", v)} />
+                  <ImageField label="Imagem 1" value={content.hero?.images?.[0]?.src} onChange={(v) => updateArrayItem("hero.images", 0, "src", v)} />
+                  <ImageField label="Imagem 2" value={content.hero?.images?.[1]?.src} onChange={(v) => updateArrayItem("hero.images", 1, "src", v)} />
+                  <ImageField label="Imagem 3" value={content.hero?.images?.[2]?.src} onChange={(v) => updateArrayItem("hero.images", 2, "src", v)} />
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="servicos">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Textos da Seção Serviços</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <TextField label="Título da seção" value={content.services?.title} onChange={(v) => update("services.title", v)} />
+                  <TextField label="Headline" value={content.services?.subtitle} onChange={(v) => update("services.subtitle", v)} />
+                  <TextField label="Descrição" value={content.services?.description} onChange={(v) => update("services.description", v)} rows={2} />
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="quem-somos">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Quem Somos</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <TextField label="Headline" value={content.about?.headline} onChange={(v) => update("about.headline", v)} />
+                  <TextField label="Descrição" value={content.about?.description} onChange={(v) => update("about.description", v)} rows={2} />
+                  <ImageField label="Imagem" value={content.about?.image} onChange={(v) => update("about.image", v)} />
+                  <ListField label="Destaques (lista)" values={content.about?.bullets} onChange={(v) => update("about.bullets", v)} />
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="contato">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Contato</CardTitle>
+                </CardHeader>
+                <CardContent className="grid sm:grid-cols-2 gap-4">
+                  <TextField label="Título" value={content.contact?.headline} onChange={(v) => update("contact.headline", v)} />
+                  <TextField label="E-mail" value={content.contact?.contactInfo?.items?.[1]?.value} onChange={(v) => update("contact.contactInfo.items.1.value", v)} />
+                  <TextField label="WhatsApp" value={content.contact?.contactInfo?.items?.[0]?.value} onChange={(v) => update("contact.contactInfo.items.0.value", v)} />
+                  <TextField label="Endereço" value={content.contact?.contactInfo?.items?.[2]?.value} onChange={(v) => update("contact.contactInfo.items.2.value", v)} />
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="temas">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Tema Padrão</CardTitle>
+                </CardHeader>
+                <CardContent className="grid sm:grid-cols-2 gap-4">
+                  <ColorField label="Cor primária" value={themes.default?.colors?.primary} onChange={(v) => setThemes({ ...themes, default: { ...themes.default, colors: { ...themes.default.colors, primary: v } } })} />
+                  <ColorField label="Cor primária escura" value={themes.default?.colors?.primaryDark} onChange={(v) => setThemes({ ...themes, default: { ...themes.default, colors: { ...themes.default.colors, primaryDark: v } } })} />
+                  <ColorField label="Cor secundária" value={themes.default?.colors?.secondary} onChange={(v) => setThemes({ ...themes, default: { ...themes.default, colors: { ...themes.default.colors, secondary: v } } })} />
+                  <ColorField label="Cor de destaque" value={themes.default?.colors?.accent} onChange={(v) => setThemes({ ...themes, default: { ...themes.default, colors: { ...themes.default.colors, accent: v } } })} />
+                </CardContent>
+              </Card>
+
+              {themes.themes?.map((t: any, idx: number) => (
+                <Card key={idx} className="mt-4">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-base">Tema Comemorativo: {t.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="grid sm:grid-cols-2 gap-4">
+                    <TextField label="Nome" value={t.name} onChange={(v) => {
+                      const next = { ...themes };
+                      next.themes[idx].name = v;
+                      setThemes(next);
+                    }} />
+                    <TextField label="Data início (MM-DD)" value={t.startDate} onChange={(v) => {
+                      const next = { ...themes };
+                      next.themes[idx].startDate = v;
+                      setThemes(next);
+                    }} />
+                    <TextField label="Data fim (MM-DD)" value={t.endDate} onChange={(v) => {
+                      const next = { ...themes };
+                      next.themes[idx].endDate = v;
+                      setThemes(next);
+                    }} />
+                    <ColorField label="Cor primária" value={t.colors?.primary} onChange={(v) => {
+                      const next = { ...themes };
+                      next.themes[idx].colors = { ...next.themes[idx].colors, primary: v };
+                      setThemes(next);
+                    }} />
+                    <ColorField label="Cor secundária" value={t.colors?.secondary} onChange={(v) => {
+                      const next = { ...themes };
+                      next.themes[idx].colors = { ...next.themes[idx].colors, secondary: v };
+                      setThemes(next);
+                    }} />
+                    <ColorField label="Cor de destaque" value={t.colors?.accent} onChange={(v) => {
+                      const next = { ...themes };
+                      next.themes[idx].colors = { ...next.themes[idx].colors, accent: v };
+                      setThemes(next);
+                    }} />
+                  </CardContent>
+                </Card>
+              ))}
+            </TabsContent>
+          </Tabs>
+        )}
       </div>
     </div>
   );
 }
 
-function JsonEditor({ data, onChange }: { data: unknown; onChange: (v: unknown) => void }) {
-  const [text, setText] = useState(JSON.stringify(data, null, 2));
+function JsonEditorPanel({
+  content,
+  themes,
+  setContent,
+  setThemes,
+}: {
+  content: Record<string, any>;
+  themes: Record<string, any>;
+  setContent: (v: Record<string, any>) => void;
+  setThemes: (v: Record<string, any>) => void;
+}) {
+  const [contentText, setContentText] = useState(JSON.stringify(content, null, 2));
+  const [themesText, setThemesText] = useState(JSON.stringify(themes, null, 2));
   const [error, setError] = useState("");
 
-  const handleChange = (value: string) => {
-    setText(value);
+  const apply = () => {
     try {
-      const parsed = JSON.parse(value);
+      setContent(JSON.parse(contentText));
+      setThemes(JSON.parse(themesText));
       setError("");
-      onChange(parsed);
     } catch {
       setError("JSON inválido");
     }
   };
 
   return (
-    <div className="space-y-2">
-      <textarea
-        value={text}
-        onChange={(e) => handleChange(e.target.value)}
-        className="w-full min-h-[500px] font-mono text-sm p-4 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
-      />
-      {error && <p className="text-sm text-red-500">{error}</p>}
+    <div className="space-y-4">
+      <div className="flex gap-2">
+        <Button onClick={apply}>Aplicar JSON</Button>
+        {error && <span className="text-red-500 text-sm">{error}</span>}
+      </div>
+      <div className="grid lg:grid-cols-2 gap-4">
+        <textarea
+          value={contentText}
+          onChange={(e) => setContentText(e.target.value)}
+          className="w-full min-h-[500px] font-mono text-sm p-4 rounded-lg border border-slate-200"
+        />
+        <textarea
+          value={themesText}
+          onChange={(e) => setThemesText(e.target.value)}
+          className="w-full min-h-[500px] font-mono text-sm p-4 rounded-lg border border-slate-200"
+        />
+      </div>
     </div>
   );
 }
-
