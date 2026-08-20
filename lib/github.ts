@@ -1,5 +1,14 @@
 const GITHUB_API = "https://api.github.com";
 
+function utf8ToBase64(str: string): string {
+  const bytes = new TextEncoder().encode(str);
+  let binary = "";
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
+}
+
 export async function commitJsonToRepo({
   owner,
   repo,
@@ -33,7 +42,7 @@ export async function commitJsonToRepo({
 
   const body = {
     message,
-    content: btoa(JSON.stringify(content, null, 2)),
+    content: utf8ToBase64(JSON.stringify(content, null, 2)),
     ...(sha ? { sha } : {}),
   };
 

@@ -52,9 +52,9 @@
       { "value": "Infraestrutura", "label": "salas, blindagem e quadros" }
     ],
     "images": [
-      { "src": "https://www.amservico.com.br/assets/img/hero-tomografo-sala.png", "alt": "Sala de tomografia com equipamento CT e infraestrutura técnica", "label": "Diagnóstico por imagem", "caption": "Tomografia, raio-X e suporte técnico especializado" },
-      { "src": "https://www.amservico.com.br/assets/img/hero-ventilador-uti.png", "alt": "Equipamento de suporte à vida em UTI hospitalar", "label": "Suporte à vida", "caption": "Manutenção de equipamentos críticos" },
-      { "src": "https://www.amservico.com.br/assets/img/hero-ressonancia-equipe.png", "alt": "Sala de ressonância magnética com adequação técnica", "label": "Infraestrutura hospitalar", "caption": "Ressonância e adequação especializada" }
+      { "src": "/assets/img/hero-tomografo-sala.png", "alt": "Sala de tomografia com equipamento CT e infraestrutura técnica", "label": "Diagnóstico por imagem", "caption": "Tomografia, raio-X e suporte técnico especializado" },
+      { "src": "/assets/img/hero-ventilador-uti.png", "alt": "Equipamento de suporte à vida em UTI hospitalar", "label": "Suporte à vida", "caption": "Manutenção de equipamentos críticos" },
+      { "src": "/assets/img/hero-ressonancia-equipe.png", "alt": "Sala de ressonância magnética com adequação técnica", "label": "Infraestrutura hospitalar", "caption": "Ressonância e adequação especializada" }
     ]
   },
   "services": {
@@ -124,7 +124,7 @@
     "title": "Quem Somos",
     "headline": "Base técnica para operações hospitalares exigentes.",
     "description": "Mais de 10 anos de experiência em suporte técnico a equipamentos médicos e hospitalares.",
-    "image": "https://www.amservico.com.br/assets/img/quem-somos-equipe.png",
+    "image": "/assets/img/quem-somos-equipe.png",
     "imageAlt": "Equipe AM Serviço e Manutenção em ambiente hospitalar",
     "highlights": [
       { "value": "10+", "label": "anos de experiência em suporte a equipamentos técnicos" },
@@ -155,7 +155,7 @@
     "title": "Engenharia Clínica",
     "headline": "Gestão técnica do parque tecnológico hospitalar.",
     "description": "Estruturação completa da operação técnica com foco em disponibilidade e governança.",
-    "image": "https://www.amservico.com.br/assets/img/engenharia-clinica-tecnico.png",
+    "image": "/assets/img/engenharia-clinica-tecnico.png",
     "imageAlt": "Técnico de engenharia clínica inspecionando equipamento hospitalar com tablet",
     "items": [
       {
@@ -181,7 +181,7 @@
     "title": "Manutenção de Equipamentos de Suporte à Vida",
     "headline": "Manutenção de equipamentos críticos hospitalares.",
     "description": "Disponibilidade e segurança para os ativos mais sensíveis da sua operação.",
-    "image": "https://www.amservico.com.br/assets/img/suporte-vida-monitor-uti.png",
+    "image": "/assets/img/suporte-vida-monitor-uti.png",
     "imageAlt": "Monitor multiparamétrico em UTI hospitalar com sinais vitais",
     "items": [
       { "title": "Ventiladores pulmonares", "text": "Manutenção preventiva, corretiva e continuidade operacional para ambientes de UTI." },
@@ -197,7 +197,7 @@
     "title": "Diagnóstico por Imagem",
     "headline": "Suporte técnico para ambientes de imagem de alta complexidade.",
     "description": "Infraestrutura, preparação de sala e manutenção especializada para cada modalidade.",
-    "image": "https://www.amservico.com.br/assets/img/equipe-engenheiros-equipamento.png",
+    "image": "/assets/img/equipe-engenheiros-equipamento.png",
     "imageAlt": "Equipe técnica da AM com equipamento de diagnóstico por imagem",
     "modalities": [
       { "name": "Tomografia", "description": "Infraestrutura elétrica, aterramento, blindagem, calibração e refrigeração." },
@@ -213,7 +213,7 @@
     "title": "Infraestrutura Hospitalar / Adequação de Salas",
     "headline": "Ambientes técnicos prontos para equipamentos críticos.",
     "description": "Preparação completa de salas para operação segura de equipamentos de imagem e alta tecnologia.",
-    "image": "https://www.amservico.com.br/assets/img/adequacao-sala-tomografia.png",
+    "image": "/assets/img/adequacao-sala-tomografia.png",
     "imageAlt": "Sala de tomografia com infraestrutura técnica completa",
     "items": [
       { "title": "Adequação elétrica", "bullets": ["Infraestrutura para alta carga", "Aterramento técnico", "Redução de riscos operacionais"] },
@@ -227,7 +227,7 @@
     "title": "Montagem de Quadros Elétricos",
     "headline": "Infraestrutura elétrica crítica para ambientes hospitalares.",
     "description": "Controle, proteção e organização técnica para instalações de alta exigência.",
-    "image": "https://www.amservico.com.br/assets/img/quadros-eletricos-painel.png",
+    "image": "/assets/img/quadros-eletricos-painel.png",
     "imageAlt": "Técnico montando painel elétrico hospitalar organizado",
     "items": [
       { "title": "Projetos elétricos", "bullets": ["Planejamento técnico hospitalar", "Suporte a alta criticidade"] },
@@ -241,7 +241,7 @@
     "title": "Serviços e Manutenções",
     "headline": "Modelo de atendimento para contratos e rotinas preventivas.",
     "description": "Resposta técnica especializada com previsibilidade e controle operacional.",
-    "image": "https://www.amservico.com.br/assets/img/servicos-manutencoes-equipe.png",
+    "image": "/assets/img/servicos-manutencoes-equipe.png",
     "imageAlt": "Equipe técnica realizando manutenção em equipamento hospitalar",
     "items": [
       { "number": "01", "title": "Contratos de manutenção", "text": "Atendimento recorrente com previsibilidade para parques tecnológicos hospitalares." },
@@ -256,12 +256,12 @@
     "headline": "Instalações e serviços executados com excelência técnica.",
     "description": "Projetos reais em ambientes hospitalares com documentação e acabamento técnico.",
     "items": [
-      { "title": "Infraestrutura para ambiente de imagem", "description": "Adequações e serviços executados no contexto técnico-hospitalar.", "image": "https://www.amservico.com.br/assets/img/case-ultrassom-clinica.png" },
-      { "title": "Atendimento técnico especializado", "description": "Manutenções, instalações e suporte técnico em equipamentos hospitalares.", "image": "https://www.amservico.com.br/assets/img/case-mamografo-sala.png" },
-      { "title": "Suporte a equipamentos de imagem", "description": "Conteúdo técnico real do repertório da empresa no segmento hospitalar.", "image": "https://www.amservico.com.br/assets/img/case-incubadora-neonatal.png" },
-      { "title": "Quadro elétrico hospitalar", "description": "Infraestrutura elétrica crítica com organização e acabamento técnico premium.", "image": "https://www.amservico.com.br/assets/img/case-quadro-eletrico.png" },
-      { "title": "Manutenção de monitor multiparamétrico", "description": "Atendimento em equipamentos de suporte à vida com foco em disponibilidade.", "image": "https://www.amservico.com.br/assets/img/case-monitor-multiparametrico.png" },
-      { "title": "Sala de tomografia em operação", "description": "Adequação completa: infraestrutura elétrica, blindagem e suporte especializado.", "image": "https://www.amservico.com.br/assets/img/case-sala-tomografia.png" }
+      { "title": "Infraestrutura para ambiente de imagem", "description": "Adequações e serviços executados no contexto técnico-hospitalar.", "image": "/assets/img/case-ultrassom-clinica.png" },
+      { "title": "Atendimento técnico especializado", "description": "Manutenções, instalações e suporte técnico em equipamentos hospitalares.", "image": "/assets/img/case-mamografo-sala.png" },
+      { "title": "Suporte a equipamentos de imagem", "description": "Conteúdo técnico real do repertório da empresa no segmento hospitalar.", "image": "/assets/img/case-incubadora-neonatal.png" },
+      { "title": "Quadro elétrico hospitalar", "description": "Infraestrutura elétrica crítica com organização e acabamento técnico premium.", "image": "/assets/img/case-quadro-eletrico.png" },
+      { "title": "Manutenção de monitor multiparamétrico", "description": "Atendimento em equipamentos de suporte à vida com foco em disponibilidade.", "image": "/assets/img/case-monitor-multiparametrico.png" },
+      { "title": "Sala de tomografia em operação", "description": "Adequação completa: infraestrutura elétrica, blindagem e suporte especializado.", "image": "/assets/img/case-sala-tomografia.png" }
     ]
   },
   "differentials": {
@@ -269,7 +269,7 @@
     "title": "Diferenciais",
     "headline": "Estrutura preparada para contratos hospitalares exigentes.",
     "description": "Solidez técnica, organização operacional e preparo institucional para cada projeto.",
-    "image": "https://www.amservico.com.br/assets/img/diferenciais-hospital.png",
+    "image": "/assets/img/diferenciais-hospital.png",
     "imageAlt": "Ambiente hospitalar moderno com infraestrutura de alta tecnologia",
     "items": [
       { "icon": "Users", "title": "Equipe especializada", "text": "Atuação com linguagem e escopo alinhados ao ambiente hospitalar e diagnóstico por imagem." },

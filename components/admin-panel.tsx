@@ -193,16 +193,16 @@ export function AdminPanel() {
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Button variant="outline" size="sm" onClick={() => setAdvanced(!advanced)}>
+          <Button variant="outline" size="sm" onClick={() => setAdvanced(!advanced)} className="border-white text-white hover:bg-white/10 hover:text-white bg-transparent">
             {advanced ? "Modo Simples" : "Modo Avançado (JSON)"}
           </Button>
-          <Button variant="outline" size="sm" onClick={() => downloadJson(content, "site-content.json")}>
+          <Button variant="outline" size="sm" onClick={() => downloadJson(content, "site-content.json")} className="border-white text-white hover:bg-white/10 hover:text-white bg-transparent">
             <Download className="w-4 h-4 mr-1" /> Baixar JSON
           </Button>
           <Button size="sm" onClick={publish}>
             <Upload className="w-4 h-4 mr-1" /> Publicar no Site
           </Button>
-          <Button variant="outline" size="sm" onClick={logout}>
+          <Button variant="outline" size="sm" onClick={logout} className="border-white text-white hover:bg-white/10 hover:text-white bg-transparent">
             <LogOut className="w-4 h-4 mr-1" /> Sair
           </Button>
         </div>
