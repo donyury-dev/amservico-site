@@ -14,6 +14,8 @@ import { commitJsonToRepo } from "@/lib/github";
 import { TextField, ImageField, ColorField, ListField, ThemeSelector } from "@/components/admin-fields";
 import { getCurrentThemeLabel, type ThemeConfig, getActiveTheme } from "@/lib/theme";
 import { EFFECT_LABELS } from "@/components/theme-effects";
+import initialContent from "@/data/site-content.json";
+import initialThemes from "@/data/themes.json";
 
 export function AdminPanel() {
   const { isAuthenticated, logout, changePassword } = useAdminAuth();
@@ -31,21 +33,8 @@ export function AdminPanel() {
   const [confirmPwd, setConfirmPwd] = useState("");
 
   useEffect(() => {
-    fetch("/data/site-content.json")
-      .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
-      })
-      .then(setContent)
-      .catch((err) => setStatus(`Erro ao carregar site-content.json: ${err.message}`));
-
-    fetch("/data/themes.json")
-      .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
-      })
-      .then(setThemes)
-      .catch((err) => setStatus(`Erro ao carregar themes.json: ${err.message}`));
+    setContent(initialContent as Record<string, any>);
+    setThemes(initialThemes as ThemeConfig);
 
     const savedToken = localStorage.getItem("am_github_token");
     const savedRepo = localStorage.getItem("am_github_repo");
