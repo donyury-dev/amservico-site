@@ -12,7 +12,8 @@ import { Separator } from "@/components/ui/separator";
 import { Download, Save, Upload, Lock, Eye, EyeOff, LogOut } from "lucide-react";
 import { commitJsonToRepo } from "@/lib/github";
 import { TextField, ImageField, ColorField, ListField, ThemeSelector } from "@/components/admin-fields";
-import { getCurrentThemeLabel, type ThemeConfig } from "@/lib/theme";
+import { getCurrentThemeLabel, type ThemeConfig, getActiveTheme } from "@/lib/theme";
+import { EFFECT_LABELS } from "@/components/theme-effects";
 
 export function AdminPanel() {
   const { isAuthenticated, logout, changePassword } = useAdminAuth();
@@ -391,6 +392,29 @@ export function AdminPanel() {
               </Card>
 
               <Card className="mt-6">
+                <CardHeader className="pb-2">
+                  <CardTitle>Efeito visual ativo</CardTitle>
+                  <CardDescription>
+                    O tema selecionado atualmente aplica este efeito sobre todo o site.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 text-slate-800 font-medium">
+                    {(() => {
+                      const active = getActiveTheme(themes);
+                      return (
+                        <>
+                          <span>{active.name}</span>
+                          <span className="text-slate-400">•</span>
+                          <span className="text-slate-600">{active.effect ? EFFECT_LABELS[active.effect] || active.effect : "Sem efeito visual"}</span>
+                        </>
+                      );
+                    })()}
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="mt-6">
                 <CardHeader>
                   <CardTitle>Cores do Tema Padrão</CardTitle>
                 </CardHeader>
@@ -410,6 +434,8 @@ export function AdminPanel() {
                       {t.movable
                         ? `Data móvel: ${t.movable} — ativa ${t.autoRange?.before || 5} dias antes e fica mais ${t.autoRange?.after || 3} dias depois.`
                         : `Data fixa: ${t.date} — ativa ${t.autoRange?.before || 5} dias antes e fica mais ${t.autoRange?.after || 3} dias depois.`}
+                      {" "}
+                      Efeito: <strong>{t.effect ? EFFECT_LABELS[t.effect] || t.effect : "nenhum"}</strong>.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="grid sm:grid-cols-2 gap-4">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeStyles } from "@/components/theme-styles";
+import { ThemeEffects } from "@/components/theme-effects";
 import { AdminAuthProvider } from "@/components/admin-auth-provider";
 
 const inter = Inter({
@@ -63,7 +64,10 @@ export default function RootLayout({
         <ThemeStyles />
       </head>
       <body className="min-h-screen bg-white text-slate-900 font-sans" style={{ fontFamily: "var(--font-body, inherit)" }}>
-        <AdminAuthProvider>{children}</AdminAuthProvider>
+        <AdminAuthProvider>
+          {children}
+          <ThemeEffects />
+        </AdminAuthProvider>
       </body>
     </html>
   );

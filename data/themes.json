@@ -25,6 +25,7 @@
       "icon": "TreePine",
       "date": "12-25",
       "autoRange": { "before": 5, "after": 3 },
+      "effect": "snow",
       "colors": {
         "primary": "#C62828",
         "primaryDark": "#1B5E20",
@@ -45,6 +46,7 @@
       "icon": "Sparkles",
       "date": "01-01",
       "autoRange": { "before": 5, "after": 3 },
+      "effect": "fireworks",
       "colors": {
         "primary": "#D4AF37",
         "primaryDark": "#1a1a2e",
@@ -65,6 +67,7 @@
       "icon": "Heart",
       "movable": "second-sunday-may",
       "autoRange": { "before": 5, "after": 3 },
+      "effect": "hearts",
       "colors": {
         "primary": "#E91E63",
         "primaryDark": "#880E4F",
@@ -85,6 +88,7 @@
       "icon": "Rabbit",
       "movable": "easter",
       "autoRange": { "before": 5, "after": 3 },
+      "effect": "easter",
       "colors": {
         "primary": "#8E24AA",
         "primaryDark": "#4A148C",
@@ -105,6 +109,7 @@
       "icon": "Ghost",
       "date": "10-31",
       "autoRange": { "before": 5, "after": 3 },
+      "effect": "bats",
       "colors": {
         "primary": "#F97316",
         "primaryDark": "#431407",
@@ -125,6 +130,7 @@
       "icon": "Cake",
       "date": "01-01",
       "autoRange": { "before": 5, "after": 3 },
+      "effect": "confetti",
       "colors": {
         "primary": "#1E88E5",
         "primaryDark": "#0A2540",
@@ -145,6 +151,7 @@
       "icon": "HardHat",
       "date": "12-11",
       "autoRange": { "before": 5, "after": 3 },
+      "effect": "balloons",
       "colors": {
         "primary": "#1E88E5",
         "primaryDark": "#0A2540",
@@ -165,6 +172,7 @@
       "icon": "HeartPulse",
       "date": "04-07",
       "autoRange": { "before": 5, "after": 3 },
+      "effect": "crosses",
       "colors": {
         "primary": "#059669",
         "primaryDark": "#064E3B",

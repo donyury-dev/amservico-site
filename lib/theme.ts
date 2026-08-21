@@ -10,6 +10,16 @@ export type ThemeConfig = {
   themes: ThemeDefinition[];
 };
 
+export type ThemeEffect =
+  | "snow"
+  | "fireworks"
+  | "hearts"
+  | "easter"
+  | "bats"
+  | "confetti"
+  | "crosses"
+  | "balloons";
+
 export type ThemeDefinition = {
   id?: string;
   name: string;
@@ -19,6 +29,7 @@ export type ThemeDefinition = {
   autoRange?: { before: number; after: number };
   colors: Record<string, string>;
   fonts: { heading: string; body: string };
+  effect?: ThemeEffect;
 };
 
 function parseDate(dateStr: string, year: number): Date {
