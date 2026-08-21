@@ -1,6 +1,6 @@
 {
-  "mode": "manual",
-  "manualTheme": "halloween",
+  "mode": "auto",
+  "manualTheme": null,
   "default": {
     "name": "Padrão",
     "icon": "Calendar",
