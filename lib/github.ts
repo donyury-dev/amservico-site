@@ -26,7 +26,8 @@ export async function commitJsonToRepo({
 }) {
   const fullPath = `repos/${owner}/${repo}/contents/${filePath}`;
 
-  const getRes = await fetch(`${GITHUB_API}/${fullPath}`, {
+  const getRes = await fetch(`${GITHUB_API}/${fullPath}?ref=main`, {
+    cache: "no-store",
     headers: {
       Authorization: `Bearer ${token}`,
       Accept: "application/vnd.github+json",
@@ -43,6 +44,7 @@ export async function commitJsonToRepo({
   const body = {
     message,
     content: utf8ToBase64(JSON.stringify(content, null, 2)),
+    branch: "main",
     ...(sha ? { sha } : {}),
   };
 
@@ -77,7 +79,8 @@ export async function getRepoSha({
   path: string;
 }) {
   const fullPath = `repos/${owner}/${repo}/contents/${filePath}`;
-  const res = await fetch(`${GITHUB_API}/${fullPath}`, {
+  const res = await fetch(`${GITHUB_API}/${fullPath}?ref=main`, {
+    cache: "no-store",
     headers: {
       Authorization: `Bearer ${token}`,
       Accept: "application/vnd.github+json",
