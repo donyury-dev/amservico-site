@@ -26,17 +26,50 @@
     "logo": "/logo-am.svg"
   },
   "nav": [
-    { "label": "Home", "href": "#home" },
-    { "label": "Quem Somos", "href": "#quem-somos" },
-    { "label": "Eng. Clínica", "href": "#engenharia-clinica" },
-    { "label": "Suporte à Vida", "href": "#suporte-vida" },
-    { "label": "Diagnóstico", "href": "#diagnostico-imagem" },
-    { "label": "Adequação", "href": "#adequacao-salas" },
-    { "label": "Quadros", "href": "#quadros-eletricos" },
-    { "label": "Serviços", "href": "#servicos-manutencoes" },
-    { "label": "Cases", "href": "#cases" },
-    { "label": "Diferenciais", "href": "#diferenciais" },
-    { "label": "Contato", "href": "#contato" }
+    {
+      "label": "Home",
+      "href": "#home"
+    },
+    {
+      "label": "Quem Somos",
+      "href": "#quem-somos"
+    },
+    {
+      "label": "Eng. Clínica",
+      "href": "#engenharia-clinica"
+    },
+    {
+      "label": "Suporte à Vida",
+      "href": "#suporte-vida"
+    },
+    {
+      "label": "Diagnóstico",
+      "href": "#diagnostico-imagem"
+    },
+    {
+      "label": "Adequação",
+      "href": "#adequacao-salas"
+    },
+    {
+      "label": "Quadros",
+      "href": "#quadros-eletricos"
+    },
+    {
+      "label": "Serviços",
+      "href": "#servicos-manutencoes"
+    },
+    {
+      "label": "Cases",
+      "href": "#cases"
+    },
+    {
+      "label": "Diferenciais",
+      "href": "#diferenciais"
+    },
+    {
+      "label": "Contato",
+      "href": "#contato"
+    }
   ],
   "hero": {
     "badge": "AM SERVIÇO E MANUTENÇÃO",
@@ -47,14 +80,38 @@
     "secondaryCta": "Falar no WhatsApp",
     "secondaryCtaHref": "https://wa.me/5511914690253",
     "highlights": [
-      { "value": "+10", "label": "anos em suporte hospitalar" },
-      { "value": "Críticos & Imagem", "label": "suporte à vida + diagnóstico" },
-      { "value": "Infraestrutura", "label": "salas, blindagem e quadros" }
+      {
+        "value": "+10",
+        "label": "anos em suporte hospitalar"
+      },
+      {
+        "value": "Críticos & Imagem",
+        "label": "suporte à vida + diagnóstico"
+      },
+      {
+        "value": "Infraestrutura",
+        "label": "salas, blindagem e quadros"
+      }
     ],
     "images": [
-      { "src": "/assets/img/hero-tomografo-sala.png", "alt": "Sala de tomografia com equipamento CT e infraestrutura técnica", "label": "Diagnóstico por imagem", "caption": "Tomografia, raio-X e suporte técnico especializado" },
-      { "src": "/assets/img/hero-ventilador-uti.png", "alt": "Equipamento de suporte à vida em UTI hospitalar", "label": "Suporte à vida", "caption": "Manutenção de equipamentos críticos" },
-      { "src": "/assets/img/hero-ressonancia-equipe.png", "alt": "Sala de ressonância magnética com adequação técnica", "label": "Infraestrutura hospitalar", "caption": "Ressonância e adequação especializada" }
+      {
+        "src": "/assets/img/hero-tomografo-sala.png",
+        "alt": "Sala de tomografia com equipamento CT e infraestrutura técnica",
+        "label": "Diagnóstico por imagem",
+        "caption": "Tomografia, raio-X e suporte técnico especializado"
+      },
+      {
+        "src": "/assets/img/hero-ventilador-uti.png",
+        "alt": "Equipamento de suporte à vida em UTI hospitalar",
+        "label": "Suporte à vida",
+        "caption": "Manutenção de equipamentos críticos"
+      },
+      {
+        "src": "/assets/img/hero-ressonancia-equipe.png",
+        "alt": "Sala de ressonância magnética com adequação técnica",
+        "label": "Infraestrutura hospitalar",
+        "caption": "Ressonância e adequação especializada"
+      }
     ]
   },
   "services": {
@@ -127,9 +184,18 @@
     "image": "/assets/img/quem-somos-equipe.png",
     "imageAlt": "Equipe AM Serviço e Manutenção em ambiente hospitalar",
     "highlights": [
-      { "value": "10+", "label": "anos de experiência em suporte a equipamentos técnicos" },
-      { "value": "B2B hospitalar", "label": "hospitais, clínicas e diagnóstico por imagem" },
-      { "value": "Embu-Guaçu/SP", "label": "base operacional com atendimento comercial oficial" }
+      {
+        "value": "10+",
+        "label": "anos de experiência em suporte a equipamentos técnicos"
+      },
+      {
+        "value": "B2B hospitalar",
+        "label": "hospitais, clínicas e diagnóstico por imagem"
+      },
+      {
+        "value": "Embu-Guaçu/SP",
+        "label": "base operacional com atendimento comercial oficial"
+      }
     ],
     "bullets": [
       "Suporte técnico a equipamentos médicos e hospitalares",
@@ -160,19 +226,35 @@
     "items": [
       {
         "title": "Gestão de parque tecnológico",
-        "bullets": ["Controle de equipamentos e criticidade", "Histórico de manutenção", "Continuidade assistencial"]
+        "bullets": [
+          "Controle de equipamentos e criticidade",
+          "Histórico de manutenção",
+          "Continuidade assistencial"
+        ]
       },
       {
         "title": "Preventiva e corretiva",
-        "bullets": ["Rotinas programadas de manutenção", "Redução de paradas não planejadas", "Preservação de desempenho"]
+        "bullets": [
+          "Rotinas programadas de manutenção",
+          "Redução de paradas não planejadas",
+          "Preservação de desempenho"
+        ]
       },
       {
         "title": "Gestão documental",
-        "bullets": ["Registros e rastreabilidade", "Apoio a compliance técnico", "ONA e RDC 509/2021"]
+        "bullets": [
+          "Registros e rastreabilidade",
+          "Apoio a compliance técnico",
+          "ONA e RDC 509/2021"
+        ]
       },
       {
         "title": "Indicadores e controle",
-        "bullets": ["Leitura de ocorrências", "Planejamento de contratos e SLAs", "Controle operacional ativo"]
+        "bullets": [
+          "Leitura de ocorrências",
+          "Planejamento de contratos e SLAs",
+          "Controle operacional ativo"
+        ]
       }
     ]
   },
@@ -184,12 +266,30 @@
     "image": "/assets/img/suporte-vida-monitor-uti.png",
     "imageAlt": "Monitor multiparamétrico em UTI hospitalar com sinais vitais",
     "items": [
-      { "title": "Ventiladores pulmonares", "text": "Manutenção preventiva, corretiva e continuidade operacional para ambientes de UTI." },
-      { "title": "Monitores multiparamétricos", "text": "Suporte técnico para equipamentos essenciais ao monitoramento clínico hospitalar." },
-      { "title": "Desfibriladores", "text": "Manutenção de alta criticidade com foco em disponibilidade e segurança operacional." },
-      { "title": "Incubadoras neonatais", "text": "Atendimento técnico com foco em estabilidade e precisão em equipamentos neonatais." },
-      { "title": "Bombas de infusão", "text": "Manutenção orientada a confiabilidade e precisão para rotinas clínicas críticas." },
-      { "title": "Equipamentos críticos", "text": "Estruturação de atendimento técnico, priorização de ocorrências e controle operacional." }
+      {
+        "title": "Ventiladores pulmonares",
+        "text": "Manutenção preventiva, corretiva e continuidade operacional para ambientes de UTI."
+      },
+      {
+        "title": "Monitores multiparamétricos",
+        "text": "Suporte técnico para equipamentos essenciais ao monitoramento clínico hospitalar."
+      },
+      {
+        "title": "Desfibriladores",
+        "text": "Manutenção de alta criticidade com foco em disponibilidade e segurança operacional."
+      },
+      {
+        "title": "Incubadoras neonatais",
+        "text": "Atendimento técnico com foco em estabilidade e precisão em equipamentos neonatais."
+      },
+      {
+        "title": "Bombas de infusão",
+        "text": "Manutenção orientada a confiabilidade e precisão para rotinas clínicas críticas."
+      },
+      {
+        "title": "Equipamentos críticos",
+        "text": "Estruturação de atendimento técnico, priorização de ocorrências e controle operacional."
+      }
     ]
   },
   "diagnosticImaging": {
@@ -200,12 +300,30 @@
     "image": "/assets/img/equipe-engenheiros-equipamento.png",
     "imageAlt": "Equipe técnica da AM com equipamento de diagnóstico por imagem",
     "modalities": [
-      { "name": "Tomografia", "description": "Infraestrutura elétrica, aterramento, blindagem, calibração e refrigeração." },
-      { "name": "Ressonância Magnética", "description": "Adequação específica de sala, climatização técnica e infraestrutura especializada." },
-      { "name": "Raio-X", "description": "Montagem, adequação do ambiente e suporte técnico continuado." },
-      { "name": "Mamografia", "description": "Ambiente preparado para operação, segurança e suporte especializado." },
-      { "name": "Ultrassom", "description": "Instalação, manutenção e organização técnica do atendimento." },
-      { "name": "DR e CR", "description": "Suporte ao ecossistema de imagem digital e rotinas operacionais." }
+      {
+        "name": "Tomografia",
+        "description": "Infraestrutura elétrica, aterramento, blindagem, calibração e refrigeração."
+      },
+      {
+        "name": "Ressonância Magnética",
+        "description": "Adequação específica de sala, climatização técnica e infraestrutura especializada."
+      },
+      {
+        "name": "Raio-X",
+        "description": "Montagem, adequação do ambiente e suporte técnico continuado."
+      },
+      {
+        "name": "Mamografia",
+        "description": "Ambiente preparado para operação, segurança e suporte especializado."
+      },
+      {
+        "name": "Ultrassom",
+        "description": "Instalação, manutenção e organização técnica do atendimento."
+      },
+      {
+        "name": "DR e CR",
+        "description": "Suporte ao ecossistema de imagem digital e rotinas operacionais."
+      }
     ]
   },
   "infrastructure": {
@@ -216,10 +334,38 @@
     "image": "/assets/img/adequacao-sala-tomografia.png",
     "imageAlt": "Sala de tomografia com infraestrutura técnica completa",
     "items": [
-      { "title": "Adequação elétrica", "bullets": ["Infraestrutura para alta carga", "Aterramento técnico", "Redução de riscos operacionais"] },
-      { "title": "Climatização técnica", "bullets": ["Instalação de ar-condicionado", "Sistemas de exaustão e ventilação", "Manutenção preventiva de HVAC"] },
-      { "title": "Blindagem e proteção", "bullets": ["Barreiras radiológicas", "Blindagem de salas de imagem", "Conformidade com normas técnicas"] },
-      { "title": "Aterramento e cabeamento", "bullets": ["Instalação de aterramento técnico", "Organização de cabeamento", "Estabilidade operacional"] }
+      {
+        "title": "Adequação elétrica",
+        "bullets": [
+          "Infraestrutura para alta carga",
+          "Aterramento técnico",
+          "Redução de riscos operacionais"
+        ]
+      },
+      {
+        "title": "Climatização técnica",
+        "bullets": [
+          "Instalação de ar-condicionado",
+          "Sistemas de exaustão e ventilação",
+          "Manutenção preventiva de HVAC"
+        ]
+      },
+      {
+        "title": "Blindagem e proteção",
+        "bullets": [
+          "Barreiras radiológicas",
+          "Blindagem de salas de imagem",
+          "Conformidade com normas técnicas"
+        ]
+      },
+      {
+        "title": "Aterramento e cabeamento",
+        "bullets": [
+          "Instalação de aterramento técnico",
+          "Organização de cabeamento",
+          "Estabilidade operacional"
+        ]
+      }
     ]
   },
   "electricalPanels": {
@@ -230,10 +376,34 @@
     "image": "/assets/img/quadros-eletricos-painel.png",
     "imageAlt": "Técnico montando painel elétrico hospitalar organizado",
     "items": [
-      { "title": "Projetos elétricos", "bullets": ["Planejamento técnico hospitalar", "Suporte a alta criticidade"] },
-      { "title": "Quadros hospitalares", "bullets": ["Montagem organizada de painéis", "Equipamentos elétricos sensíveis"] },
-      { "title": "Infraestrutura crítica", "bullets": ["Revisão de painéis e proteções", "Rede elétrica e adequações"] },
-      { "title": "Instalações hospitalares", "bullets": ["Continuidade operacional", "Confiabilidade do ambiente técnico"] }
+      {
+        "title": "Projetos elétricos",
+        "bullets": [
+          "Planejamento técnico hospitalar",
+          "Suporte a alta criticidade"
+        ]
+      },
+      {
+        "title": "Quadros hospitalares",
+        "bullets": [
+          "Montagem organizada de painéis",
+          "Equipamentos elétricos sensíveis"
+        ]
+      },
+      {
+        "title": "Infraestrutura crítica",
+        "bullets": [
+          "Revisão de painéis e proteções",
+          "Rede elétrica e adequações"
+        ]
+      },
+      {
+        "title": "Instalações hospitalares",
+        "bullets": [
+          "Continuidade operacional",
+          "Confiabilidade do ambiente técnico"
+        ]
+      }
     ]
   },
   "maintenanceServices": {
@@ -244,10 +414,26 @@
     "image": "/assets/img/servicos-manutencoes-equipe.png",
     "imageAlt": "Equipe técnica realizando manutenção em equipamento hospitalar",
     "items": [
-      { "number": "01", "title": "Contratos de manutenção", "text": "Atendimento recorrente com previsibilidade para parques tecnológicos hospitalares." },
-      { "number": "02", "title": "Manutenção preventiva", "text": "Rotinas programadas para reduzir indisponibilidades e preservar desempenho." },
-      { "number": "03", "title": "Manutenção corretiva", "text": "Resposta técnica rápida para restauração do ambiente e dos equipamentos." },
-      { "number": "04", "title": "Gestão operacional", "text": "Controle de chamados, histórico técnico, indicadores e apoio a SLAs hospitalares." }
+      {
+        "number": "01",
+        "title": "Contratos de manutenção",
+        "text": "Atendimento recorrente com previsibilidade para parques tecnológicos hospitalares."
+      },
+      {
+        "number": "02",
+        "title": "Manutenção preventiva",
+        "text": "Rotinas programadas para reduzir indisponibilidades e preservar desempenho."
+      },
+      {
+        "number": "03",
+        "title": "Manutenção corretiva",
+        "text": "Resposta técnica rápida para restauração do ambiente e dos equipamentos."
+      },
+      {
+        "number": "04",
+        "title": "Gestão operacional",
+        "text": "Controle de chamados, histórico técnico, indicadores e apoio a SLAs hospitalares."
+      }
     ]
   },
   "cases": {
@@ -256,12 +442,36 @@
     "headline": "Instalações e serviços executados com excelência técnica.",
     "description": "Projetos reais em ambientes hospitalares com documentação e acabamento técnico.",
     "items": [
-      { "title": "Infraestrutura para ambiente de imagem", "description": "Adequações e serviços executados no contexto técnico-hospitalar.", "image": "/assets/img/case-ultrassom-clinica.png" },
-      { "title": "Atendimento técnico especializado", "description": "Manutenções, instalações e suporte técnico em equipamentos hospitalares.", "image": "/assets/img/case-mamografo-sala.png" },
-      { "title": "Suporte a equipamentos de imagem", "description": "Conteúdo técnico real do repertório da empresa no segmento hospitalar.", "image": "/assets/img/case-incubadora-neonatal.png" },
-      { "title": "Quadro elétrico hospitalar", "description": "Infraestrutura elétrica crítica com organização e acabamento técnico premium.", "image": "/assets/img/case-quadro-eletrico.png" },
-      { "title": "Manutenção de monitor multiparamétrico", "description": "Atendimento em equipamentos de suporte à vida com foco em disponibilidade.", "image": "/assets/img/case-monitor-multiparametrico.png" },
-      { "title": "Sala de tomografia em operação", "description": "Adequação completa: infraestrutura elétrica, blindagem e suporte especializado.", "image": "/assets/img/case-sala-tomografia.png" }
+      {
+        "title": "Infraestrutura para ambiente de imagem",
+        "description": "Adequações e serviços executados no contexto técnico-hospitalar.",
+        "image": "/assets/img/case-ultrassom-clinica.png"
+      },
+      {
+        "title": "Atendimento técnico especializado",
+        "description": "Manutenções, instalações e suporte técnico em equipamentos hospitalares.",
+        "image": "/assets/img/case-mamografo-sala.png"
+      },
+      {
+        "title": "Suporte a equipamentos de imagem",
+        "description": "Conteúdo técnico real do repertório da empresa no segmento hospitalar.",
+        "image": "/assets/img/case-incubadora-neonatal.png"
+      },
+      {
+        "title": "Quadro elétrico hospitalar",
+        "description": "Infraestrutura elétrica crítica com organização e acabamento técnico premium.",
+        "image": "/assets/img/case-quadro-eletrico.png"
+      },
+      {
+        "title": "Manutenção de monitor multiparamétrico",
+        "description": "Atendimento em equipamentos de suporte à vida com foco em disponibilidade.",
+        "image": "/assets/img/case-monitor-multiparametrico.png"
+      },
+      {
+        "title": "Sala de tomografia em operação",
+        "description": "Adequação completa: infraestrutura elétrica, blindagem e suporte especializado.",
+        "image": "/assets/img/case-sala-tomografia.png"
+      }
     ]
   },
   "differentials": {
@@ -272,16 +482,48 @@
     "image": "/assets/img/diferenciais-hospital.png",
     "imageAlt": "Ambiente hospitalar moderno com infraestrutura de alta tecnologia",
     "items": [
-      { "icon": "Users", "title": "Equipe especializada", "text": "Atuação com linguagem e escopo alinhados ao ambiente hospitalar e diagnóstico por imagem." },
-      { "icon": "Headset", "title": "Atendimento técnico", "text": "Suporte especializado com foco em disponibilidade, segurança e organização operacional." },
-      { "icon": "HardHat", "title": "Engenharia hospitalar", "text": "União entre manutenção, preparação de ambientes e leitura técnica do parque." },
-      { "icon": "BarChart3", "title": "Gestão de indicadores", "text": "Visão para contratos, históricos e acompanhamento de desempenho operacional." },
-      { "icon": "Clock", "title": "SLA e controle operacional", "text": "Abordagem comercial com previsibilidade de atendimento e resposta a equipamentos críticos." },
-      { "icon": "Building", "title": "Suporte a grandes contratos", "text": "Visual, narrativa e estrutura voltados a solidez, organização e prontidão institucional." }
+      {
+        "icon": "Users",
+        "title": "Equipe especializada",
+        "text": "Atuação com linguagem e escopo alinhados ao ambiente hospitalar e diagnóstico por imagem."
+      },
+      {
+        "icon": "Headset",
+        "title": "Atendimento técnico",
+        "text": "Suporte especializado com foco em disponibilidade, segurança e organização operacional."
+      },
+      {
+        "icon": "HardHat",
+        "title": "Engenharia hospitalar",
+        "text": "União entre manutenção, preparação de ambientes e leitura técnica do parque."
+      },
+      {
+        "icon": "BarChart3",
+        "title": "Gestão de indicadores",
+        "text": "Visão para contratos, históricos e acompanhamento de desempenho operacional."
+      },
+      {
+        "icon": "Clock",
+        "title": "SLA e controle operacional",
+        "text": "Abordagem comercial com previsibilidade de atendimento e resposta a equipamentos críticos."
+      },
+      {
+        "icon": "Building",
+        "title": "Suporte a grandes contratos",
+        "text": "Visual, narrativa e estrutura voltados a solidez, organização e prontidão institucional."
+      }
     ],
     "testimonials": [
-      { "quote": "Há anos contamos com a AM Serviço e Manutenção para a manutenção dos nossos equipamentos de tomografia e raio X.", "author": "João Mendes", "role": "Diretor de Clínica Médica" },
-      { "quote": "O suporte oferecido é excepcional. A atenção aos detalhes e a preocupação com a segurança fazem toda a diferença.", "author": "Ricardo Lima", "role": "Engenheiro Clínico" }
+      {
+        "quote": "Há anos contamos com a AM Serviço e Manutenção para a manutenção dos nossos equipamentos de tomografia e raio X.",
+        "author": "João Mendes",
+        "role": "Diretor de Clínica Médica"
+      },
+      {
+        "quote": "O suporte oferecido é excepcional. A atenção aos detalhes e a preocupação com a segurança fazem toda a diferença.",
+        "author": "Ricardo Lima",
+        "role": "Engenheiro Clínico"
+      }
     ]
   },
   "contact": {
@@ -291,21 +533,66 @@
     "description": "Solicite uma avaliação ou fale diretamente pelo WhatsApp. Retornamos em até 24h úteis.",
     "formTitle": "Envie uma mensagem",
     "formFields": [
-      { "name": "nome", "label": "Nome", "type": "text", "required": true },
-      { "name": "empresa", "label": "Empresa", "type": "text", "required": false },
-      { "name": "email", "label": "E-mail", "type": "email", "required": true },
-      { "name": "telefone", "label": "Telefone", "type": "tel", "required": true },
-      { "name": "assunto", "label": "Assunto", "type": "text", "required": true },
-      { "name": "mensagem", "label": "Mensagem", "type": "textarea", "required": true }
+      {
+        "name": "nome",
+        "label": "Nome",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "empresa",
+        "label": "Empresa",
+        "type": "text",
+        "required": false
+      },
+      {
+        "name": "email",
+        "label": "E-mail",
+        "type": "email",
+        "required": true
+      },
+      {
+        "name": "telefone",
+        "label": "Telefone",
+        "type": "tel",
+        "required": true
+      },
+      {
+        "name": "assunto",
+        "label": "Assunto",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "mensagem",
+        "label": "Mensagem",
+        "type": "textarea",
+        "required": true
+      }
     ],
     "submitLabel": "Enviar mensagem",
     "successMessage": "Mensagem enviada com sucesso! Entraremos em contato em breve.",
     "contactInfo": {
       "title": "Informações de contato",
       "items": [
-        { "icon": "Phone", "label": "WhatsApp", "value": "+55 11 91469-0253", "href": "https://wa.me/5511914690253" },
-        { "icon": "Mail", "label": "E-mail", "value": "aoliveira@amservico.com.br", "href": "mailto:aoliveira@amservico.com.br" },
-        { "icon": "MapPin", "label": "Endereço", "value": "Embu-Guaçu/SP — CEP 06928-265", "href": "#" }
+        {
+          "icon": "Phone",
+          "label": "WhatsApp",
+          "value": "+55 11 91469-0253",
+          "href": "https://wa.me/5511914690253"
+        },
+        {
+          "icon": "Mail",
+          "label": "E-mail",
+          "value": "aoliveira@amservico.com.br",
+          "href": "mailto:aoliveira@amservico.com.br"
+        },
+        {
+          "icon": "MapPin",
+          "label": "Endereço",
+          "value": "Embu-Guaçu/SP — CEP 06928-265",
+          "href": "#"
+        }
       ]
     },
     "commercial": {
@@ -319,27 +606,60 @@
       {
         "title": "Empresa",
         "links": [
-          { "label": "Home", "href": "#home" },
-          { "label": "Quem Somos", "href": "#quem-somos" },
-          { "label": "Diferenciais", "href": "#diferenciais" },
-          { "label": "Contato", "href": "#contato" }
+          {
+            "label": "Home",
+            "href": "#home"
+          },
+          {
+            "label": "Quem Somos",
+            "href": "#quem-somos"
+          },
+          {
+            "label": "Diferenciais",
+            "href": "#diferenciais"
+          },
+          {
+            "label": "Contato",
+            "href": "#contato"
+          }
         ]
       },
       {
         "title": "Serviços",
         "links": [
-          { "label": "Engenharia Clínica", "href": "#engenharia-clinica" },
-          { "label": "Suporte à Vida", "href": "#suporte-vida" },
-          { "label": "Diagnóstico por Imagem", "href": "#diagnostico-imagem" },
-          { "label": "Adequação de Salas", "href": "#adequacao-salas" },
-          { "label": "Quadros Elétricos", "href": "#quadros-eletricos" }
+          {
+            "label": "Engenharia Clínica",
+            "href": "#engenharia-clinica"
+          },
+          {
+            "label": "Suporte à Vida",
+            "href": "#suporte-vida"
+          },
+          {
+            "label": "Diagnóstico por Imagem",
+            "href": "#diagnostico-imagem"
+          },
+          {
+            "label": "Adequação de Salas",
+            "href": "#adequacao-salas"
+          },
+          {
+            "label": "Quadros Elétricos",
+            "href": "#quadros-eletricos"
+          }
         ]
       },
       {
         "title": "Contato",
         "links": [
-          { "label": "WhatsApp", "href": "https://wa.me/5511914690253" },
-          { "label": "E-mail", "href": "mailto:aoliveira@amservico.com.br" }
+          {
+            "label": "WhatsApp",
+            "href": "https://wa.me/5511914690253"
+          },
+          {
+            "label": "E-mail",
+            "href": "mailto:aoliveira@amservico.com.br"
+          }
         ]
       }
     ],

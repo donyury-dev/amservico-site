@@ -26,6 +26,8 @@ export type ThemeDefinition = {
   icon?: string;
   date?: string;
   movable?: "easter" | "second-sunday-may";
+  startDate?: string;
+  endDate?: string;
   autoRange?: { before: number; after: number };
   colors: Record<string, string>;
   fonts: { heading: string; body: string };
@@ -68,19 +70,31 @@ function getThemeBaseDate(theme: ThemeDefinition, year: number): Date | null {
   return null;
 }
 
-function isInRange(baseDate: Date, date: Date, before: number, after: number): boolean {
-  const start = new Date(baseDate);
-  start.setDate(start.getDate() - before);
+function getThemeRange(theme: ThemeDefinition, year: number): { start: Date; end: Date } | null {
+  if (theme.startDate && theme.endDate) {
+    const start = parseDate(theme.startDate, year);
+    const end = parseDate(theme.endDate, year);
+    if (end < start) {
+      end.setFullYear(year + 1);
+    }
+    start.setHours(0, 0, 0, 0);
+    end.setHours(23, 59, 59, 999);
+    return { start, end };
+  }
+
+  const base = getThemeBaseDate(theme, year);
+  if (!base) return null;
+  const range = theme.autoRange || { before: 5, after: 3 };
+
+  const start = new Date(base);
+  start.setDate(start.getDate() - range.before);
   start.setHours(0, 0, 0, 0);
 
-  const end = new Date(baseDate);
-  end.setDate(end.getDate() + after);
+  const end = new Date(base);
+  end.setDate(end.getDate() + range.after);
   end.setHours(23, 59, 59, 999);
 
-  const check = new Date(date);
-  check.setHours(12, 0, 0, 0);
-
-  return check >= start && check <= end;
+  return { start, end };
 }
 
 export function getActiveTheme(themes: ThemeConfig, date = new Date()): ThemeDefinition {
@@ -90,12 +104,13 @@ export function getActiveTheme(themes: ThemeConfig, date = new Date()): ThemeDef
   }
 
   const year = date.getFullYear();
+  const check = new Date(date);
+  check.setHours(12, 0, 0, 0);
 
   for (const theme of themes.themes) {
-    const base = getThemeBaseDate(theme, year);
-    if (!base) continue;
-    const range = theme.autoRange || { before: 5, after: 3 };
-    if (isInRange(base, date, range.before, range.after)) {
+    const range = getThemeRange(theme, year);
+    if (!range) continue;
+    if (check >= range.start && check <= range.end) {
       return theme;
     }
   }

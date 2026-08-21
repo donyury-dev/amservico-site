@@ -1,5 +1,5 @@
 {
-  "mode": "auto",
+  "mode": "manual",
   "manualTheme": null,
   "default": {
     "name": "Padrão",
@@ -20,15 +20,15 @@
   },
   "themes": [
     {
-      "id": "natal",
+      "id": "christmas",
       "name": "Natal",
       "icon": "TreePine",
-      "date": "12-25",
-      "autoRange": { "before": 5, "after": 3 },
       "effect": "snow",
+      "startDate": "12-20",
+      "endDate": "12-26",
       "colors": {
         "primary": "#C62828",
-        "primaryDark": "#1B5E20",
+        "primaryDark": "#2E7D32",
         "secondary": "#2E7D32",
         "background": "#ffffff",
         "foreground": "#0f172a",
@@ -41,12 +41,12 @@
       }
     },
     {
-      "id": "ano-novo",
+      "id": "newyear",
       "name": "Ano Novo",
       "icon": "Sparkles",
-      "date": "01-01",
-      "autoRange": { "before": 5, "after": 3 },
       "effect": "fireworks",
+      "startDate": "12-30",
+      "endDate": "01-02",
       "colors": {
         "primary": "#D4AF37",
         "primaryDark": "#1a1a2e",
@@ -65,9 +65,9 @@
       "id": "dia-das-maes",
       "name": "Dia das Mães",
       "icon": "Heart",
+      "effect": "hearts",
       "movable": "second-sunday-may",
       "autoRange": { "before": 5, "after": 3 },
-      "effect": "hearts",
       "colors": {
         "primary": "#E91E63",
         "primaryDark": "#880E4F",
@@ -86,9 +86,9 @@
       "id": "pascoa",
       "name": "Páscoa",
       "icon": "Rabbit",
+      "effect": "easter",
       "movable": "easter",
       "autoRange": { "before": 5, "after": 3 },
-      "effect": "easter",
       "colors": {
         "primary": "#8E24AA",
         "primaryDark": "#4A148C",
@@ -107,9 +107,9 @@
       "id": "halloween",
       "name": "Halloween",
       "icon": "Ghost",
+      "effect": "bats",
       "date": "10-31",
       "autoRange": { "before": 5, "after": 3 },
-      "effect": "bats",
       "colors": {
         "primary": "#F97316",
         "primaryDark": "#431407",
@@ -128,9 +128,9 @@
       "id": "aniversario",
       "name": "Aniversário",
       "icon": "Cake",
+      "effect": "confetti",
       "date": "01-01",
       "autoRange": { "before": 5, "after": 3 },
-      "effect": "confetti",
       "colors": {
         "primary": "#1E88E5",
         "primaryDark": "#0A2540",
@@ -146,12 +146,12 @@
       }
     },
     {
-      "id": "engenheiro",
+      "id": "engineer",
       "name": "Dia do Engenheiro",
       "icon": "HardHat",
-      "date": "12-11",
-      "autoRange": { "before": 5, "after": 3 },
       "effect": "balloons",
+      "startDate": "12-11",
+      "endDate": "12-11",
       "colors": {
         "primary": "#1E88E5",
         "primaryDark": "#0A2540",
@@ -167,12 +167,12 @@
       }
     },
     {
-      "id": "saude",
+      "id": "health",
       "name": "Dia Mundial da Saúde",
       "icon": "HeartPulse",
-      "date": "04-07",
-      "autoRange": { "before": 5, "after": 3 },
       "effect": "crosses",
+      "startDate": "04-07",
+      "endDate": "04-07",
       "colors": {
         "primary": "#059669",
         "primaryDark": "#064E3B",

@@ -431,7 +431,9 @@ export function AdminPanel() {
                   <CardHeader className="pb-2">
                     <CardTitle className="text-base">Tema Comemorativo: {t.name}</CardTitle>
                     <CardDescription>
-                      {t.movable
+                      {t.startDate && t.endDate
+                        ? `Período fixo: ${t.startDate} até ${t.endDate}.`
+                        : t.movable
                         ? `Data móvel: ${t.movable} — ativa ${t.autoRange?.before || 5} dias antes e fica mais ${t.autoRange?.after || 3} dias depois.`
                         : `Data fixa: ${t.date} — ativa ${t.autoRange?.before || 5} dias antes e fica mais ${t.autoRange?.after || 3} dias depois.`}
                       {" "}
