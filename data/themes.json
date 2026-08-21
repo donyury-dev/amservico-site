@@ -1,6 +1,6 @@
 {
   "mode": "manual",
-  "manualTheme": null,
+  "manualTheme": "christmas",
   "default": {
     "name": "Padrão",
     "icon": "Calendar",
@@ -67,7 +67,10 @@
       "icon": "Heart",
       "effect": "hearts",
       "movable": "second-sunday-may",
-      "autoRange": { "before": 5, "after": 3 },
+      "autoRange": {
+        "before": 5,
+        "after": 3
+      },
       "colors": {
         "primary": "#E91E63",
         "primaryDark": "#880E4F",
@@ -88,7 +91,10 @@
       "icon": "Rabbit",
       "effect": "easter",
       "movable": "easter",
-      "autoRange": { "before": 5, "after": 3 },
+      "autoRange": {
+        "before": 5,
+        "after": 3
+      },
       "colors": {
         "primary": "#8E24AA",
         "primaryDark": "#4A148C",
@@ -109,7 +115,10 @@
       "icon": "Ghost",
       "effect": "bats",
       "date": "10-31",
-      "autoRange": { "before": 5, "after": 3 },
+      "autoRange": {
+        "before": 5,
+        "after": 3
+      },
       "colors": {
         "primary": "#F97316",
         "primaryDark": "#431407",
@@ -130,7 +139,10 @@
       "icon": "Cake",
       "effect": "confetti",
       "date": "01-01",
-      "autoRange": { "before": 5, "after": 3 },
+      "autoRange": {
+        "before": 5,
+        "after": 3
+      },
       "colors": {
         "primary": "#1E88E5",
         "primaryDark": "#0A2540",
